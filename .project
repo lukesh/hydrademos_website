@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>HydraProjects_Website_1_0_Demo</name>
+	<comment></comment>
+	<projects>
+		<project>HydraMVC_Core_0.3.0</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexbuilder.project.flexnature</nature>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>bin-debug</name>
+			<type>2</type>
+			<location>/Applications/MAMP/htdocs/hydraframework/hydraprojects_website</location>
+		</link>
+	</linkedResources>
+</projectDescription>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<applicationRoot>local_application_root</applicationRoot>
+	<serviceRoot>local_service_root</serviceRoot>
+	<serviceGateway>gateway.php</serviceGateway>
+	<webRoot>local_web_root</webRoot>
+	<suppressErrors>false</suppressErrors>
+	<suppressWarnings>false</suppressWarnings>
+</config>

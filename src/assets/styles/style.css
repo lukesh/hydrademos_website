@@ -1,0 +1,25 @@
+global {
+	theme-color: #AAAAAA;
+	font-weight: normal;
+	font-size: 11px;
+	color: #666666; 
+	
+	modal-transparency: 0.4;
+	modal-transparency-blur: 0;
+	modal-transparency-color: #EEEEEE;
+	modal-transparency-duration: 300;
+}
+
+Application {
+	background-color: #000000;
+}
+
+ScrollBar {
+	thumb-up-skin: 		ClassReference("assets.skins.widgets.scrollBars.ScrollbarThumbUpSkin");
+	thumb-over-skin: 	ClassReference("assets.skins.widgets.scrollBars.ScrollbarThumbUpSkin");
+	thumb-down-skin: 	ClassReference("assets.skins.widgets.scrollBars.ScrollbarThumbUpSkin");
+
+	trackSkin: 			Embed(source="/assets/skins/widgets/scrollBars/scrollTrack.png", scaleGridLeft="1", scaleGridTop="18", scaleGridRight="19", scaleGridBottom="157");
+	upArrowSkin: 		Embed(source="/assets/skins/widgets/scrollBars/scrollUpArrow.png");
+	downArrowSkin: 		Embed(source="/assets/skins/widgets/scrollBars/scrollDownArrow.png");
+}

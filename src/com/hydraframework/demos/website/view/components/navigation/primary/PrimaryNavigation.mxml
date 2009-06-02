@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"
+		 xmlns:components="com.hydraframework.demos.website.view.components.navigation.primary.view.components.*"
+		 width="100%"
+		 verticalAlign="middle"
+		 horizontalScrollPolicy="off"
+		 verticalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+			import com.hydraframework.demos.website.view.components.navigation.primary.view.events.NavigationEvent;
+		]]>
+	</mx:Script>
+	<mx:VBox verticalGap="0">
+		<mx:Text text="HydraFramework"
+				 fontSize="14"
+				 fontWeight="bold"/>
+		<mx:Text text="Website Template Project"/>
+	</mx:VBox>
+	<mx:Spacer width="100%"
+			   height="1"/>
+	<mx:HBox horizontalGap="5">
+		<components:NavigationButton label="Home"
+									 click="dispatchEvent(new NavigationEvent(NavigationEvent.NAVIGATE, ''))"/>
+		<components:NavigationButton label="Users"
+									 click="dispatchEvent(new NavigationEvent(NavigationEvent.NAVIGATE, 'users'))"/>
+	</mx:HBox>
+</mx:HBox>

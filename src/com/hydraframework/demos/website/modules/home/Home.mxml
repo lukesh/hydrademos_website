@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentComponentBase xmlns="com.hydraframework.plugins.navigation.view.*"
+					  xmlns:mx="http://www.adobe.com/2006/mxml"
+					  width="100%"
+					  height="100%">
+	<mx:Script>
+		<![CDATA[
+			import com.hydraframework.core.HydraFramework;
+			import flash.utils.setTimeout;
+
+			override public function transitionOut():void {
+				super.transitionOut();
+				this.currentState="hide";
+				setTimeout(this.dispatchTransitionOut, 501);
+			}
+		]]>
+	</mx:Script>
+	<states>
+		<mx:State name="hide"/>
+	</states>
+	<transitions>
+		<mx:Transition fromState="*"
+					   toState="hide">
+			<mx:AnimateProperty property="alpha"
+								target="{this}"
+								toValue="0"
+								duration="500"/>
+		</mx:Transition>
+	</transitions>
+
+	<mx:Text text="Home"/>
+</ContentComponentBase>

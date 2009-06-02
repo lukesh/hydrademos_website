@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actionScriptProperties mainApplicationPath="Website.mxml" version="3">
+<compiler additionalCompilerArguments="-locale en_US -default-background-color #FFFFFF" copyDependentFiles="true" enableModuleDebug="true" flexSDK="Flex 3.2" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersion="10.0.12" htmlPlayerVersionCheck="true" outputFolderLocation="/Applications/MAMP/htdocs/hydraframework/hydraprojects_website" outputFolderPath="bin-debug" rootURL="http://localhost:8888/hydraframework/hydraprojects_website/" sourceFolderPath="src" strict="true" useApolloConfig="false" verifyDigests="true" warn="true">
+<compilerSourcePath/>
+<libraryPath defaultLinkType="1">
+<libraryPathEntry kind="4" path=""/>
+<libraryPathEntry kind="1" linkType="1" path="libs"/>
+<libraryPathEntry kind="3" linkType="1" path="/HydraPlugins_Navigation_1_0/bin/HydraPlugins_Navigation_1_0.swc" useDefaultLinkType="false"/>
+<libraryPathEntry kind="3" linkType="1" path="/HydraPlugins_Configuration_1_0/bin/HydraPlugins_Configuration_1_0.swc" useDefaultLinkType="false"/>
+<libraryPathEntry kind="3" linkType="1" path="/HydraPlugins_PageNavigation_1_0/bin/HydraPlugins_PageNavigation_1_0.swc" useDefaultLinkType="false"/>
+</libraryPath>
+<sourceAttachmentPath/>
+</compiler>
+<applications>
+<application path="Website.mxml"/>
+</applications>
+<modules>
+<module application="src/Website.mxml" destPath="com/hydraframework/demos/website/modules/users/Users.swf" optimize="true" sourcePath="src/com/hydraframework/demos/website/modules/users/Users.mxml"/>
+</modules>
+<buildCSSFiles/>
+</actionScriptProperties>

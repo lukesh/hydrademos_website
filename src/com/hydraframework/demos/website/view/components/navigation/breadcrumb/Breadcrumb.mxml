@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="com.hydraframework.demos.website.view.components.navigation.breadcrumb.view.components.*">
+	<mx:Script>
+		<![CDATA[
+			import com.hydraframework.demos.website.view.components.navigation.primary.view.events.NavigationEvent;
+			import com.hydraframework.demos.website.view.components.navigation.breadcrumb.view.components.BreadcrumbButton;
+			
+			[Bindable]
+			public var breadcrumb:Array;
+			
+			public function dispatchBreadcrumbEvent(event:MouseEvent):void {
+				var breadcrumbButton:BreadcrumbButton = BreadcrumbButton(event.target);
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.NAVIGATE, String(breadcrumbButton.breadcrumbData)));
+			}
+		]]>
+	</mx:Script>
+	<mx:HBox horizontalGap="0" verticalAlign="middle">
+		<mx:Repeater id="wRepeater" dataProvider="{breadcrumb}">
+			<mx:Text text="{wRepeater.currentIndex == 0 ? '' : '>'}" /><components:BreadcrumbButton label="{wRepeater.currentItem.label}" breadcrumbData="{wRepeater.currentItem.data}" click="dispatchBreadcrumbEvent(event)" />
+		</mx:Repeater>
+	</mx:HBox>
+</mx:Canvas>

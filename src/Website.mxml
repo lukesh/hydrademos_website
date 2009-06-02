@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:view="com.hydraframework.plugins.navigation.view.*"
+	xmlns:degrafa="com.degrafa.*"
+	xmlns:geometry="com.degrafa.geometry.*"
+	xmlns:paint="com.degrafa.paint.*"
+	layout="absolute"
+	frameRate="30"
+	preinitialize="HydraFramework.initialize(this, ApplicationFacade)" 
+	applicationComplete="handleApplicationComplete(event)"
+	xmlns:primary="com.hydraframework.demos.website.view.components.navigation.primary.*" xmlns:breadcrumb="com.hydraframework.demos.website.view.components.navigation.breadcrumb.*">
+	<mx:Style source="assets/styles/style.css" />
+	<mx:Script>
+		<![CDATA[
+			import com.hydraframework.demos.website.ApplicationFacade;
+			import org.hasseg.externalMouseWheel.ExternalMouseWheelSupport;
+			import com.hydraframework.core.HydraFramework;
+			import com.hydraframework.plugins.error.ErrorManager;
+			import com.hydraframework.plugins.error.descriptors.*;
+			
+			/*
+			   -------------------------------------------------------------------
+			   SCROLL WHEEL SUPPORT
+			   -------------------------------------------------------------------
+			 */
+			private var _mwSupport:ExternalMouseWheelSupport = null;
+			private function bindMouseWheel():void {
+				_mwSupport = ExternalMouseWheelSupport.getInstance(stage);
+				_mwSupport.dispatchingObjectDeterminationMethod = ExternalMouseWheelSupport.TRAVERSE_DISPLAY_LIST;
+			}
+			
+			/*
+			   -------------------------------------------------------------------
+			   EVENT HANDLERS
+			   -------------------------------------------------------------------
+			 */
+			private function handleApplicationComplete(event:Event):void {
+				setTimeout(bindMouseWheel, 500);
+			}
+		]]>
+	</mx:Script>
+	
+	<!--
+		 ===========================================================================
+		 BACKGROUND
+		 ===========================================================================
+	-->
+
+	<degrafa:Surface width="100%" height="100%">
+		<degrafa:fills>
+			<paint:LinearGradientFill id="backgroundFill" angle="90">
+				<paint:GradientStop ratio="0" color="#FFFFFF" />
+				<paint:GradientStop ratio="1" color="#FFFFFF" />
+			</paint:LinearGradientFill>
+		</degrafa:fills>
+		<degrafa:GeometryGroup id="background">
+			<geometry:RegularRectangle x="0"
+				y="0"
+				width="{this.width}"
+				height="{this.height}"
+				fill="{backgroundFill}"/>
+		</degrafa:GeometryGroup>
+	</degrafa:Surface>
+	
+	<!--
+		 ===========================================================================
+		 CONTENT
+		 ===========================================================================
+	-->
+	
+	<mx:VBox width="100%" height="100%" paddingTop="20" paddingLeft="20" paddingBottom="20" paddingRight="20">
+		<primary:PrimaryNavigation />
+		<breadcrumb:Breadcrumb id="wBreadcrumb" />
+		<view:ContentContainer id="wContentContainer" width="100%" height="100%" />
+	</mx:VBox>
+</mx:Application>
+
