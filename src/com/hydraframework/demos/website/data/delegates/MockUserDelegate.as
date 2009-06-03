@@ -68,8 +68,8 @@ package com.hydraframework.demos.website.data.delegates {
 			mock_userList.addItem(user);
 
 			setTimeout(function():void {
-					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, {success:true}, asyncToken, null));
-				}, 200);
+					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, {success: true}, asyncToken, null));
+				}, 1000);
 			return asyncToken;
 		}
 
@@ -90,7 +90,7 @@ package com.hydraframework.demos.website.data.delegates {
 
 			setTimeout(function():void {
 					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, newUser, asyncToken, null));
-				}, 200);
+				}, 1000);
 			return asyncToken;
 		}
 
@@ -107,8 +107,8 @@ package com.hydraframework.demos.website.data.delegates {
 			}
 
 			setTimeout(function():void {
-					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, {success:true}, asyncToken, null));
-				}, 200);
+					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, {success: true}, asyncToken, null));
+				}, 1000);
 			return asyncToken;
 		}
 
@@ -124,8 +124,8 @@ package com.hydraframework.demos.website.data.delegates {
 			}
 
 			setTimeout(function():void {
-					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, {success:true}, asyncToken, null));
-				}, 200);
+					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, {success: true}, asyncToken, null));
+				}, 1000);
 			return asyncToken;
 		}
 	}
