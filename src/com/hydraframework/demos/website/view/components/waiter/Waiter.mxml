@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" backgroundColor="#000000" backgroundAlpha="0.2"
+	preinitialize="HydraFramework.initialize(this, WaiterFacade)"
+	>
+	<mx:Script>
+		<![CDATA[
+			import com.hydraframework.core.HydraFramework;
+			import com.hydraframework.demos.website.view.components.waiter.WaiterFacade;
+			public function show():void {
+				this.dispatchEvent(new Event("waitShow"));
+			}
+			public function hide():void {
+				this.dispatchEvent(new Event("waitHide"));
+			}
+		]]>
+	</mx:Script>
+	<mx:Text color="#000000" text="Please wait..." horizontalCenter="0" verticalCenter="0" />
+</mx:Canvas>

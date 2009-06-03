@@ -12,7 +12,6 @@ package com.hydraframework.demos.website.view {
 
 	public class ApplicationMediator extends Mediator {
 		public static const NAME:String = "ApplicationMediator";
-		
 		public function get app():Website {
 			return this.component as Website;
 		}

@@ -56,7 +56,7 @@ package com.hydraframework.demos.website.data.delegates {
 
 			setTimeout(function():void {
 					asyncToken.mx_internal::applyResult(new ResultEvent(ResultEvent.RESULT, false, true, users, asyncToken, null));
-				}, 100);
+				}, 200);
 			return asyncToken;
 		}
 

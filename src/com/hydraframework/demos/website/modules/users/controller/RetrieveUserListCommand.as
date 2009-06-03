@@ -12,7 +12,7 @@ package com.hydraframework.demos.website.modules.users.controller {
 	public class RetrieveUserListCommand extends SimpleCommand implements IResponder {
 
 		public function get delegate():IUserDelegate {
-			return new(this.facade.retrieveDelegate(IUserDelegate) as Class)();
+			return this.facade.retrieveDelegate(IUserDelegate) as IUserDelegate;
 		}
 		
 		public function get proxy():UsersProxy {
