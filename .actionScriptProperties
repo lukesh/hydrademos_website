@@ -5,11 +5,6 @@
 <libraryPath defaultLinkType="1">
 <libraryPathEntry kind="4" path=""/>
 <libraryPathEntry kind="1" linkType="1" path="libs"/>
-<libraryPathEntry kind="3" linkType="1" path="/HydraPlugins_Navigation_1_0/bin/HydraPlugins_Navigation_1_0.swc" useDefaultLinkType="false"/>
-<libraryPathEntry kind="3" linkType="1" path="/HydraPlugins_Configuration_1_0/bin/HydraPlugins_Configuration_1_0.swc" useDefaultLinkType="false"/>
-<libraryPathEntry kind="3" linkType="1" path="/HydraPlugins_PageNavigation_1_0/bin/HydraPlugins_PageNavigation_1_0.swc" useDefaultLinkType="false"/>
-<libraryPathEntry kind="3" linkType="1" path="/HydraFramework_Core_0_3_0/bin/HydraFramework_Core_0_3_0.swc" useDefaultLinkType="false"/>
-<libraryPathEntry kind="3" linkType="1" path="/HydraPlugins_Error_1_0/bin/HydraPlugins_Error_1_0.swc" useDefaultLinkType="false"/>
 </libraryPath>
 <sourceAttachmentPath/>
 </compiler>

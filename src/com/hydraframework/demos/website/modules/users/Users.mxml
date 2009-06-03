@@ -4,7 +4,7 @@
 					  width="100%"
 					  height="100%"
 					  preinitialize="HydraFramework.initialize(this, UsersFacade)"
-					  >
+					  xmlns:waiter="com.hydraframework.demos.website.view.components.waiter.*">
 	<mx:Script>
 		<![CDATA[
 			import com.hydraframework.demos.website.data.interfaces.IUser;
@@ -41,10 +41,16 @@
 		<mx:Button id="wRetrieveUserList" label="Retrieve User List" />
 		<mx:HDividedBox width="100%" height="100%">
 			<mx:VBox width="20%" height="100%">
-				<mx:List id="wUserList" width="100%" height="100%" labelField="firstName" />
+				<mx:Canvas width="100%" height="100%">
+					<mx:List id="wUserList" width="100%" height="100%" labelField="firstName" />
+					<waiter:Waiter id="wUserListWaiter" width="100%" height="100%" />
+				</mx:Canvas>
 				<mx:Button id="wCreate" label="Create" />
 			</mx:VBox>
 			<mx:Form width="80%">
+				<mx:FormItem label="User ID">
+					<mx:TextInput id="wUserID" text="{user.userId}" editable="false" width="50" />
+				</mx:FormItem>
 				<mx:FormItem label="First Name">
 					<mx:TextInput id="wFirstName" text="{user.firstName}" width="100%"/>
 				</mx:FormItem>

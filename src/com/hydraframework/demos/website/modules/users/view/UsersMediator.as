@@ -36,16 +36,20 @@ package com.hydraframework.demos.website.modules.users.view {
 		
 		override public function handleNotification(notification:Notification):void {
 			super.handleNotification(notification);
-			
-			if(!notification.isResponse())
-				return;
 				
 			switch(notification.name) {
 				case UsersFacade.RETRIEVE_USER_LIST:
-					view.wUserList.dataProvider = ArrayCollection(notification.body);
+					if(notification.isRequest()) {
+						view.wUserListWaiter.show();
+					} else {
+						view.wUserListWaiter.hide();
+						view.wUserList.dataProvider = ArrayCollection(notification.body);
+					}
 					break;
 				case UsersFacade.SELECT_USER:
-					view.user = IUser(notification.body);
+					if(notification.isResponse()) {
+						view.user = IUser(notification.body);
+					}
 					break;
 			}
 		}
@@ -68,7 +72,7 @@ package com.hydraframework.demos.website.modules.users.view {
 		
 		private function handleCreateClick(event:MouseEvent):void {
 			var user:IUser = new User();
-			user.firstName = "Untitled";
+			user.firstName = "New User";
 			this.sendNotification(new Notification(UsersFacade.CREATE_USER, user));
 		}
 	}
