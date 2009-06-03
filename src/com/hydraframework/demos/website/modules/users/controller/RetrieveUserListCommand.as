@@ -4,7 +4,7 @@ package com.hydraframework.demos.website.modules.users.controller {
 	import com.hydraframework.core.mvc.patterns.command.SimpleCommand;
 	import com.hydraframework.demos.website.data.interfaces.IUserDelegate;
 	import com.hydraframework.demos.website.modules.users.model.UsersProxy;
-	
+
 	import mx.collections.ArrayCollection;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
@@ -14,7 +14,7 @@ package com.hydraframework.demos.website.modules.users.controller {
 		public function get delegate():IUserDelegate {
 			return this.facade.retrieveDelegate(IUserDelegate) as IUserDelegate;
 		}
-		
+
 		public function get proxy():UsersProxy {
 			return UsersProxy(this.facade.retrieveProxy(UsersProxy.NAME));
 		}
@@ -32,11 +32,11 @@ package com.hydraframework.demos.website.modules.users.controller {
 
 		public function result(data:Object):void {
 			trace("user list retrieved!");
-			var users:ArrayCollection;
 			this.proxy.users = data.result as ArrayCollection;
 		}
-		
+
 		public function fault(data:Object):void {
+
 		}
 	}
 }
