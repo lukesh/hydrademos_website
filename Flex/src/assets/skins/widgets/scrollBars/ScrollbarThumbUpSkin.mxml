@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GraphicBorderSkin xmlns:mx="http://www.adobe.com/2006/mxml" 
+                   xmlns="com.degrafa.skins.*" xmlns:paint="com.degrafa.paint.*" xmlns:geometry="com.degrafa.geometry.*" xmlns:repeaters="com.degrafa.geometry.repeaters.*">
+
+    <mx:Script>
+        <![CDATA[
+        	import mx.controls.scrollClasses.ScrollThumb;
+            [Bindable]
+            private var awidth:Number=0;
+
+            [Bindable]
+            private var aheight:Number=0;
+            
+			override public function invalidateDisplayList():void
+			{
+				var sb:ScrollThumb = this.parent as ScrollThumb;
+				if(sb)
+				{
+					sb.explicitMinHeight = 25;
+				}
+                super.invalidateDisplayList();
+			}            
+			
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+            {
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+                awidth = 14;//unscaledWidth;
+                aheight = unscaledHeight;
+            }
+        ]]>
+    </mx:Script>
+
+    <fills>
+    	<paint:LinearGradientFill id="mainFill">
+    		<paint:GradientStop ratio="0.6" color="#FFFFFF" alpha="1" />
+    		<paint:GradientStop ratio="0.6" color="#e7e7e7" alpha="1" />
+    	</paint:LinearGradientFill>
+    	<paint:LinearGradientFill id="glossFill">
+    		<paint:GradientStop ratio="0" color="#f6f6f6" alpha="1" />
+    		<paint:GradientStop ratio="1" color="#dddddd" alpha="1" />
+    	</paint:LinearGradientFill>
+    </fills>
+
+	<strokes>
+		<paint:SolidStroke weight="1" alpha="1" color="#ffffff" id="theStroke"/>
+	</strokes>
+	
+    <geometry>
+    	<geometry:RoundedRectangleComplex 
+    		x="-7" y="0" 
+    		bottomLeftRadius="7" 
+    		bottomRightRadius="7" 
+    		topLeftRadius="7" 
+    		topRightRadius="7" 
+    		width="{awidth}" 
+    		height="{aheight}" 
+    		fill="{mainFill}"
+    		/>
+    	<geometry:RoundedRectangleComplex 
+    		x="-2" y="1" 
+    		bottomLeftRadius="6" 
+    		bottomRightRadius="5" 
+    		topLeftRadius="6" 
+    		topRightRadius="5" 
+    		width="{awidth-6}" 
+    		height="{aheight-2}" 
+    		fill="{glossFill}"
+    		/>	
+    </geometry>
+
+</GraphicBorderSkin>
