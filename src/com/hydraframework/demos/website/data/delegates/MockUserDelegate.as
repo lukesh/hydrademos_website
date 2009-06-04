@@ -17,11 +17,11 @@ package com.hydraframework.demos.website.data.delegates {
 		public static var mock_userList:ArrayCollection;
 
 		public function MockUserDelegate() {
-			if(mock_userList) 
+			if (mock_userList)
 				return;
-				
+
 			mock_userList = new ArrayCollection();
-				
+
 			var user:IUser;
 			user = new User();
 
@@ -62,9 +62,9 @@ package com.hydraframework.demos.website.data.delegates {
 
 		public function createUser(user:IUser):AsyncToken {
 			var asyncToken:AsyncToken = new AsyncToken(null);
-			
+
 			user.userId = mock_userList.length;
-			
+
 			mock_userList.addItem(user);
 
 			setTimeout(function():void {
@@ -76,6 +76,7 @@ package com.hydraframework.demos.website.data.delegates {
 		public function retrieveUser(userId:int):AsyncToken {
 			var asyncToken:AsyncToken = new AsyncToken(null);
 			var lookupUser:IUser;
+
 			for each (lookupUser in mock_userList) {
 				if (lookupUser.userId == userId) {
 					break;
@@ -96,6 +97,7 @@ package com.hydraframework.demos.website.data.delegates {
 		public function updateUser(user:IUser):AsyncToken {
 			var asyncToken:AsyncToken = new AsyncToken(null);
 			var lookupUser:IUser;
+
 			for each (lookupUser in mock_userList) {
 				if (lookupUser.userId == user.userId) {
 					lookupUser.firstName = user.firstName;
@@ -113,6 +115,7 @@ package com.hydraframework.demos.website.data.delegates {
 		public function deleteUser(user:IUser):AsyncToken {
 			var asyncToken:AsyncToken = new AsyncToken(null);
 			var lookupUser:IUser;
+
 			for each (lookupUser in mock_userList) {
 				if (lookupUser.userId == user.userId) {
 					mock_userList.removeItemAt(mock_userList.getItemIndex(lookupUser));

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentModuleBase xmlns="com.hydraframework.plugins.navigation.view.*"
-					  xmlns:mx="http://www.adobe.com/2006/mxml"
-					  width="100%"
-					  height="100%"
-					  preinitialize="HydraFramework.initialize(this, UsersFacade)"
-					  xmlns:waiter="com.hydraframework.demos.website.view.components.waiter.*">
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%"
+	height="100%"
+	preinitialize="HydraFramework.initialize(this, UsersFacade)"
+	xmlns:waiter="com.hydraframework.demos.website.view.components.waiter.*">
 	<mx:Script>
 		<![CDATA[
 			import com.hydraframework.demos.website.data.interfaces.IUser;
@@ -14,10 +14,10 @@
 
 			[Bindable]
 			public var user:IUser;
-			
+
 			override public function transitionOut():void {
 				super.transitionOut();
-				this.currentState="hide";
+				this.currentState = "hide";
 				setTimeout(this.dispatchTransitionOut, 501);
 			}
 		]]>
@@ -26,30 +26,26 @@
 		<mx:State name="hide"/>
 	</states>
 	<transitions>
-		<mx:Transition fromState="*"
-					   toState="hide">
-			<mx:AnimateProperty property="alpha"
-								target="{this}"
-								toValue="0"
-								duration="500"/>
+		<mx:Transition fromState="*" toState="hide">
+			<mx:AnimateProperty property="alpha" target="{this}" toValue="0" duration="500"/>
 		</mx:Transition>
 	</transitions>
-	<mx:Binding source="wFirstName.text" destination="user.firstName" />
-	<mx:Binding source="wLastName.text" destination="user.lastName" />
+	<mx:Binding source="wFirstName.text" destination="user.firstName"/>
+	<mx:Binding source="wLastName.text" destination="user.lastName"/>
 	<mx:VBox width="100%" height="100%">
 		<mx:Text text="Users"/>
-		<mx:Button id="wRetrieveUserList" label="Retrieve User List" />
+		<mx:Button id="wRetrieveUserList" label="Retrieve User List"/>
 		<mx:HDividedBox width="100%" height="100%">
 			<mx:VBox width="20%" height="100%">
 				<mx:Canvas width="100%" height="100%">
-					<mx:List id="wUserList" width="100%" height="100%" labelField="firstName" />
-					<waiter:Waiter id="wUserListWaiter" width="100%" height="100%" />
+					<mx:List id="wUserList" width="100%" height="100%" labelField="firstName"/>
+					<waiter:Waiter id="wUserListWaiter" width="100%" height="100%"/>
 				</mx:Canvas>
-				<mx:Button id="wCreate" label="Create" />
+				<mx:Button id="wCreate" label="Create"/>
 			</mx:VBox>
 			<mx:Form width="80%">
 				<mx:FormItem label="User ID">
-					<mx:TextInput id="wUserID" text="{user.userId}" editable="false" width="50" />
+					<mx:TextInput id="wUserID" text="{user.userId}" editable="false" width="50"/>
 				</mx:FormItem>
 				<mx:FormItem label="First Name">
 					<mx:TextInput id="wFirstName" text="{user.firstName}" width="100%"/>
@@ -57,8 +53,11 @@
 				<mx:FormItem label="Last Name">
 					<mx:TextInput id="wLastName" text="{user.lastName}" width="100%"/>
 				</mx:FormItem>
-				<mx:Button id="wSave" label="Save" />
-				<mx:Button id="wDelete" label="Delete" />
+				<mx:FormItem label="Request Time">
+					<mx:TextInput id="wRequestTime" text="{user.requestTime.currentTime}" width="100%" enabled="false"/>
+				</mx:FormItem>
+				<mx:Button id="wSave" label="Save"/>
+				<mx:Button id="wDelete" label="Delete"/>
 			</mx:Form>
 		</mx:HDividedBox>
 	</mx:VBox>

@@ -1,6 +1,6 @@
 package com.hydraframework.demos.website.data.interfaces {
 	import mx.rpc.AsyncToken;
-	
+
 	public interface IUserDelegate {
 		function retrieveUserList():AsyncToken;
 		function createUser(user:IUser):AsyncToken;

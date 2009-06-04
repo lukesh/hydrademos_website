@@ -28,9 +28,6 @@ Learn more about Flex at http://flex.org
 <style>
 body { margin: 0px; overflow:hidden }
 </style>
-
-<script type="text/javascript" src="assets/scripts/extMouseWheel.js"></script>  
-
 <script language="JavaScript" type="text/javascript">
 <!--
 // -----------------------------------------------------------------------------
@@ -47,8 +44,6 @@ var requiredRevision = ${version_revision};
 </head>
 
 <body scroll="no">
-<div width="100%" height="100%" id="flashContainerDiv">
-
 <script language="JavaScript" type="text/javascript">
 <!--
 // Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
@@ -76,7 +71,6 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 		"bgcolor", "${bgcolor}",
 		"name", "${application}",
 		"allowScriptAccess","sameDomain",
-		"allowFullScreen", "true",
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer"
 	);
@@ -92,7 +86,6 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"quality", "high",
 			"bgcolor", "${bgcolor}",
 			"name", "${application}",
-			"allowFullScreen", "true",
 			"allowScriptAccess","sameDomain",
 			"type", "application/x-shockwave-flash",
 			"pluginspage", "http://www.adobe.com/go/getflashplayer"
@@ -113,20 +106,16 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			<param name="quality" value="high" />
 			<param name="bgcolor" value="${bgcolor}" />
 			<param name="allowScriptAccess" value="sameDomain" />
-			<param name="allowFullScreen" value="true" />
 			<embed src="${swf}.swf" quality="high" bgcolor="${bgcolor}"
 				width="${width}" height="${height}" name="${application}" align="middle"
 				play="true"
 				loop="false"
 				quality="high"
 				allowScriptAccess="sameDomain"
-				allowFullScreen="true"
 				type="application/x-shockwave-flash"
 				pluginspage="http://www.adobe.com/go/getflashplayer">
 			</embed>
 	</object>
 </noscript>
-
-</div>
 </body>
 </html>

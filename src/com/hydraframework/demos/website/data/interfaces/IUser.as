@@ -1,4 +1,6 @@
 package com.hydraframework.demos.website.data.interfaces {
+	import com.hydraframework.demos.website.data.descriptors.Time;
+
 	import flash.events.IEventDispatcher;
 
 	public interface IUser extends IEventDispatcher {
@@ -8,5 +10,7 @@ package com.hydraframework.demos.website.data.interfaces {
 		function set firstName(value:String):void;
 		function get lastName():String;
 		function set lastName(value:String):void;
+		function get requestTime():Time;
+		function set requestTime(value:Time):void;
 	}
 }
