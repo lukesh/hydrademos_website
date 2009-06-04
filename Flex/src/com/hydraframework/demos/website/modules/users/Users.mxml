@@ -7,6 +7,7 @@
 	xmlns:waiter="com.hydraframework.demos.website.view.components.waiter.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import com.hydraframework.demos.website.data.interfaces.IUser;
 			import com.hydraframework.demos.website.modules.users.UsersFacade;
 			import com.hydraframework.core.HydraFramework;
@@ -30,8 +31,10 @@
 			<mx:AnimateProperty property="alpha" target="{this}" toValue="0" duration="500"/>
 		</mx:Transition>
 	</transitions>
+
 	<mx:Binding source="wFirstName.text" destination="user.firstName"/>
 	<mx:Binding source="wLastName.text" destination="user.lastName"/>
+
 	<mx:VBox width="100%" height="100%">
 		<mx:Text text="Users"/>
 		<mx:Button id="wRetrieveUserList" label="Retrieve User List"/>
@@ -48,10 +51,10 @@
 					<mx:TextInput id="wUserID" text="{user.userId}" editable="false" width="50"/>
 				</mx:FormItem>
 				<mx:FormItem label="First Name">
-					<mx:TextInput id="wFirstName" text="{user.firstName}" width="100%"/>
+					<mx:TextInput id="wFirstName" text="{user.firstName}" backgroundColor="{user.hasError('firstName') ? 0x990000 : 0xFFFFFF}" width="100%"/>
 				</mx:FormItem>
 				<mx:FormItem label="Last Name">
-					<mx:TextInput id="wLastName" text="{user.lastName}" width="100%"/>
+					<mx:TextInput id="wLastName" text="{user.lastName}" backgroundColor="{user.hasError('lastName') ? 0x990000 : 0xFFFFFF}" width="100%"/>
 				</mx:FormItem>
 				<mx:FormItem label="Request Time">
 					<mx:TextInput id="wRequestTime" text="{user.requestTime.currentTime}" width="100%" enabled="false"/>

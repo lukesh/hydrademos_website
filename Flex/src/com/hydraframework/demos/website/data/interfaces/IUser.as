@@ -3,7 +3,7 @@ package com.hydraframework.demos.website.data.interfaces {
 
 	import flash.events.IEventDispatcher;
 
-	public interface IUser extends IEventDispatcher {
+	public interface IUser extends IEventDispatcher, IValidationDictionary {
 		function get userId():int;
 		function set userId(value:int):void;
 		function get firstName():String;

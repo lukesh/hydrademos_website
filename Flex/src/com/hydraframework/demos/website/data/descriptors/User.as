@@ -1,15 +1,23 @@
 package com.hydraframework.demos.website.data.descriptors {
 	import com.hydraframework.demos.website.data.interfaces.IUser;
 
-	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 
+	import mx.utils.StringUtil;
+
 	[RemoteClass(alias="ServiceLibrary.Descriptors.User")]
-	public class User extends EventDispatcher implements IUser {
+	public class User extends ValidationDictionary implements IUser {
 		public function User(target:IEventDispatcher = null) {
 			super(target);
 		}
 
+		//-----------------------------
+		//
+		//	Properties
+		//
+		//-----------------------------
+
+		//userId
 		private var _userId:int;
 
 		public function get userId():int {
@@ -20,6 +28,7 @@ package com.hydraframework.demos.website.data.descriptors {
 			_userId = value;
 		}
 
+		//firstName
 		private var _firstName:String;
 
 		public function get firstName():String {
@@ -30,6 +39,7 @@ package com.hydraframework.demos.website.data.descriptors {
 			_firstName = value;
 		}
 
+		//lastName
 		private var _lastName:String;
 
 		public function get lastName():String {
@@ -40,6 +50,8 @@ package com.hydraframework.demos.website.data.descriptors {
 			_lastName = value;
 		}
 
+
+		//requestTime
 		private var _requestTime:Time;
 
 		public function get requestTime():Time {
@@ -48,6 +60,25 @@ package com.hydraframework.demos.website.data.descriptors {
 
 		public function set requestTime(value:Time):void {
 			_requestTime = value;
+		}
+
+		//-----------------------------
+		//
+		//	Public Methods
+		//
+		//-----------------------------
+		override public function validate():Boolean {
+			this.clearErrors();
+
+			//firstName
+			if (_firstName == null || StringUtil.trim(_firstName).length == 0)
+				this.addError("firstName", "firstName is required");
+
+			//lastName
+			if (_lastName == null || StringUtil.trim(_lastName).length == 0)
+				this.addError("lastName", "lastName is required");
+
+			return this.isValid;
 		}
 	}
 }
