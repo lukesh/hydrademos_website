@@ -1,0 +1,248 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>WebORB Presentation Server</title>
+<style>
+<!--
+td { 
+font-family: Tahoma; 
+font-size: 10pt;
+vertical-align: top;
+}
+.rightborder {
+	 border-right-width: 1px; 
+	 border-right-style: solid; 
+}
+
+.nospacing {
+	padding: 0;
+	border-spacing: 0; 
+}
+-->
+</style>
+</head>
+
+<body topmargin="20" leftmargin="0">
+
+      <p><font face="Arial" style="font-size: 20pt">Troubleshooting guide</font></p>
+		<div align="center">
+			<table border="0" style="border-collapse: collapse" width="80%" cellpadding="3" id="table1">
+				<tr>
+					<td>The recommended approach for troubleshooting a problem 
+					with WebORB is to run the WebORB Diagnostics Utility. The 
+					utility can be launched using any of the following URLs:<p>
+					If diagnostics.aspx is present in the root of the virtual 
+					directory (you can copy it from the default weborb 
+					installation path), open the following (make sure to replace 
+					[application-name] with the name of your application:<br>
+					<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="http://localhost/[application-name]/diagnostics.aspx">
+					http://localhost/[application-name]/diagnostics.aspx</a></p>
+					<p>If weborb.aspx is registered in the application's 
+					web.config:<br>
+					<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="http://localhost/[application-name]/weborb.aspx?diag">
+					http://localhost/[application-name]/weborb.aspx?diagnostics</a></p>
+					<p>To run the diagnostics utility for this installation of 
+					WebORB, click <a target="_blank" href="../diagnostics.aspx">
+					here</a>.<br>
+&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="border-top-style: solid; border-top-width: 1px;">The table below provides a list of common problems and 
+					possible steps for resolution. If you experience a problem 
+					make sure to check the following first:<ul>
+						<li>Your ASP.NET application is configured to use the 
+						.NET 2.0 framework</li>
+						<li>WebORB is fully deployed as described in the 
+						&quot;Deployment&quot; tab of the console</li>
+						<li>WebORB http handler is registered in web.config as 
+						described in the &quot;Deployment&quot; tab of the console</li>
+						<li>Your assembly is deployed in the ASP.NET application</li>
+					</ul>
+					<table border="1" style="border-collapse: collapse" width="100%" cellpadding="3" id="table2">
+						<tr>
+							<td width="20%"><b>Problem</b></td>
+							<td width="40%"><b>Possible cause</b></td>
+							<td width="40%"><b>Remedy</b></td>
+						</tr>
+						<tr>
+							<td width="20%">Flex application receives &quot;Send 
+							Failed&quot; error</td>
+							<td width="80%" colspan="2" class="nospacing">
+							<table border="0" style="border-collapse: collapse" width="100%" cellpadding="3" id="table3">
+								<tr>
+									<td width="50%" class="rightborder">Server ASP.NET application 
+									is not configured to use .NET 2.0</td>
+									<td width="50%">
+									<ol>
+										<li>Open IIS Manager</li>
+										<li>Select application's virtual 
+										directory</li>
+										<li>Open the properties panel</li>
+										<li>Select the ASP.NET tab</li>
+										<li>Change the version number to 2.0</li>
+									</ol>
+									<p>&nbsp;</td>
+								</tr>
+							</table>
+							<table border="0" style="border-collapse: collapse" width="100%" cellpadding="3" id="table4">
+								<tr>
+									<td width="50%" class="rightborder">Server application is not properly configured. 
+							HTTP requests result in responses with the 500 
+							status code.</td>
+									<td>
+									<ol>
+										<li>Try to open 
+										http://localhost/[virtual directory 
+										name]/weborb.aspx</li>
+										<li>If an ASP.NET error is reported, it 
+										should provide pointers for the root 
+										cause (possible causes could be an error 
+										in the configuration file or missing 
+										assembly)</li>
+										<li>If 'document not found' is reported, 
+										weborb.aspx must be registered in the 
+										application's web.config (see Step 2 in 
+										&quot;Manual Deployment&quot; in the &quot;Deployment&quot; 
+										tab for details.</li>
+									</ol>
+									</td>
+								</tr>
+							</table>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Server responds with error &quot;None of 
+							the handlers were able to handle method invocation 
+							on the service&quot;</td>
+							<td width="80%" colspan="2" class="nospacing">
+							<table border="0" style="border-collapse: collapse" width="100%" cellpadding="3" id="table5">
+								<tr>
+									<td width="50%" class="rightborder">Server 
+									class is not available in the deployed 
+									assemblies</td>
+									<td width="50%">
+									Use the &quot;Services&quot; tab to locate your class 
+									in the Service Browser. If the class does 
+									not show up, make sure the assembly is 
+									deployed in the ASP.NET application.<br>
+									<br>
+&nbsp;</td>
+								</tr>
+							</table>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Server responds with error &quot;unable 
+							to find method with name - XXXX&quot;</td>
+							<td width="80%" colspan="2" class="nospacing">
+							<table border="0" style="border-collapse: collapse" width="100%" cellpadding="3" id="table6">
+								<tr>
+									<td width="50%" class="rightborder">Method 
+									is not public</td>
+									<td width="50%">
+									Make sure the invoked method has public 
+									access</td>
+								</tr>
+							</table>
+							<table border="0" style="border-collapse: collapse" width="100%" cellpadding="3" id="table7">
+								<tr>
+									<td width="50%" class="rightborder">Client 
+									arguments types do not match remote method's 
+									formal argument types. For example, client 
+									sends a complex type object where an integer 
+									is expected.</td>
+									<td width="50%">
+									Make sure to inspect the remote method 
+									arguments using TestDrive under the 
+									&quot;Services&quot; tab. Modify the client 
+									application to pass correct argument types.</td>
+								</tr>
+							</table>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Code generation does not work. 
+							Server reports IO errors</td>
+							<td width="40%">User account used by ASP.NET does 
+							not have Write permission for the /[app's virtual 
+							directory]/weborbassets/codegen folder.&nbsp; </td>
+							<td width="40%">ASP.NET with IIS6 uses the &quot;NETWORK 
+							SERVICE&quot; account, otherwise ASPNET user account is 
+							used. Select the /weborbassets/codegen folder from 
+							the virtual directory on the computer where WebORB 
+							is deployed and grant Write permission to the user 
+							account used by ASP.NET.</td>
+						</tr>
+						<tr>
+							<td width="20%">Logging does not work. Log files are 
+							not created, /logs folder is empty</td>
+							<td width="40%">User account used by ASP.NET does 
+							not have Write permission for the /[app's virtual 
+							directory]/logs folder.&nbsp; </td>
+							<td width="40%">ASP.NET with IIS6 uses the &quot;NETWORK 
+							SERVICE&quot; account, otherwise ASPNET user account is 
+							used. Select the /logs folder from the virtual 
+							directory on the computer where WebORB is deployed 
+							and grant Write permission to the user account used 
+							by ASP.NET.</td>
+						</tr>
+						<tr>
+							<td width="20%">Deployment through the console does 
+							not work. Server reports &quot;Access denied&quot; errors.</td>
+							<td width="40%">User account used by ASP.NET does 
+							not have Write permission for the targeted virtual 
+							directory&nbsp;&nbsp; </td>
+							<td width="40%">Select the target virtual directory 
+							and grant the &quot;Write&quot; permission to the user account 
+							used by ASP.NET.</td>
+						</tr>
+						<tr>
+							<td width="20%">WebORB does not accept license key 
+							from a previous version and switches to the 
+							Development mode</td>
+							<td width="40%">New major versions of WebORB require 
+							new license keys. If you are a customer and are 
+							covered by the maintenance plan, you will get a free 
+							upgrade. </td>
+							<td width="40%">Contact sales and request a new 
+							license key</td>
+						</tr>
+					</table>
+					<p><b>Getting Support</b></p>
+					<p>If you experience a problem with the product, please 
+					consider posting to the
+					<a href="http://tech.groups.yahoo.com/group/flashorb/">
+					WebORB Interest Group</a>.<br>
+					Customers can send support inquires to
+					<a href="mailto:support@themidnightcoders.com">
+					support@themidnightcoders.com</a>.</p>
+					<p><b>Known Issues</b></p>
+					<ul>
+						<li>Automated deployment does not properly show all 
+						virtual directories for the milti-site IIS installations</li>
+						<li>Method ambiguity resolution is not supported</li>
+						<li>ARP code generator may not work properly for Flash 
+						clients.</li>
+					</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<p>&nbsp;</p>
+		<font face="Tahoma" size="2">
+		<p align="center">
+		&nbsp;</p>
+		<p align="center">&nbsp;</p></font>
+      <p align="center">&nbsp;
+
+</body>
+
+</html>

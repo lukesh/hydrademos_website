@@ -1,0 +1,12 @@
+C:\Inetpub\wwwroot\TimeDemo\code\ServiceLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Inetpub\wwwroot\TimeDemo\code\ServiceLibrary\bin\Debug\ServiceLibrary.dll
+C:\Inetpub\wwwroot\TimeDemo\code\ServiceLibrary\bin\Debug\ServiceLibrary.pdb
+C:\Inetpub\wwwroot\TimeDemo\code\ServiceLibrary\bin\Debug\weborb.dll
+C:\Inetpub\wwwroot\TimeDemo\code\ServiceLibrary\obj\Debug\ServiceLibrary.dll
+C:\Inetpub\wwwroot\TimeDemo\code\ServiceLibrary\obj\Debug\ServiceLibrary.pdb
+C:\Inetpub\wwwroot\hydrademos_website\Services\code\ServiceLibrary\bin\Debug\ServiceLibrary.dll
+C:\Inetpub\wwwroot\hydrademos_website\Services\code\ServiceLibrary\bin\Debug\ServiceLibrary.pdb
+C:\Inetpub\wwwroot\hydrademos_website\Services\code\ServiceLibrary\bin\Debug\weborb.dll
+C:\Inetpub\wwwroot\hydrademos_website\Services\code\ServiceLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Inetpub\wwwroot\hydrademos_website\Services\code\ServiceLibrary\obj\Debug\ServiceLibrary.dll
+C:\Inetpub\wwwroot\hydrademos_website\Services\code\ServiceLibrary\obj\Debug\ServiceLibrary.pdb

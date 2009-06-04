@@ -1,0 +1,122 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>WebORB Presentation Server</title>
+<style>
+<!--
+td           { font-family: Tahoma; font-size: 10pt }
+.bottomBorder { 
+	border-bottom-style: solid; 
+	border-bottom-width: 1px 
+}
+-->
+</style>
+</head>
+
+<body topmargin="20" leftmargin="0" style="font-family: Tahoma; font-size: 10pt">
+
+		<div align="center">
+			<p align="left"><font face="Arial" style="font-size: 20pt">
+			WebORB Enterprise - <font color="#FF8000">Standalone Mode</font></font></p>
+			<table border="0" style="border-collapse: collapse" width="80%" cellpadding="3" id="table3">
+				<tr>
+					<td>
+					<p><b>Introduction</b><p>WebORB Enterprise Edition supports 
+					the standalone execution mode thus eliminating the 
+					requirement for a web server. Flex/Flash applications can 
+					connect to WebORB using messaging API. Flex applications can 
+					perform remoting invocations of the .NET assemblies deployed 
+					into WebORB via messaging channel. 
+					<p>Below is a diagram demonstrating standalone mode file 
+					structure:<div align="center">
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table4" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+									<font face="Courier New">
+									weborb home <br>
+									directory <br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">Applications<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">bin<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472; weborb.config<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472; weborbee.exe<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472; weborbee.exe.config<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">logs<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9492;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">WEB-INF<br>
+&nbsp;&nbsp; &#9474;<br>
+									&nbsp;&nbsp; &#9492;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">flex </font></td>
+									<td valign="top"><font face="Courier New"><br>
+									<br>
+									<br>
+									</font>- contains Enterprise applications 
+									used by messaging clients<font face="Courier New"><br>
+									<br>
+									</font>- contains weborb assembly as well as 
+									user application assemblies<font face="Courier New"><br>
+									<br>
+									</font>- weborb configuration file<font face="Courier New"><br>
+									<br>
+									</font>- weborb enterprise standalone 
+									launcher<font face="Courier New"><br>
+									<br>
+									</font>- weborb enterprise standalone 
+									launcher config<font face="Courier New"><br>
+									<br>
+									</font>- directory where WebORB stores log 
+									files<font face="Courier New"><br>
+									<br>
+									<br>
+									<br>
+									</font>- contains flex configuration files</td>
+								</tr>
+							</table>
+							<p align="left"><b>Running WebORB Enterprise</b></p>
+						<p align="left">To run the product standalone open a 
+						command prompt window, change current directory to /Inetpub/wwwroot/weborb30 
+						and run weborbee.exe:</p>
+						<p><img border="0" src="images/runningwoee.jpg"></p>
+						<p align="left">Notice the default port the product 
+						listens for requests is 2037. The port can be changed 
+						using the -port argument for the weborbee.exe product 
+						launcher. Once the product is started Flex and Flash 
+						clients can connect to it using the standard 
+						ActionScript API. </p>
+						<p align="left"><b>Flex Remoting over Messaging</b></p>
+						<p align="left">To configure Flex clients to perform 
+						remoting invocations via messaging channel, change the 
+						channel name for the configured destinations to &quot;weborb-rtmp&quot; 
+						in remoting-config.xml:</p>
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table5" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+									<p align="left"><font face="Courier New">
+									&lt;default-channels&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;channel ref=&quot;<b>weborb-rtmp</b>&quot; /&gt;<br>
+									&lt;/default-channels&gt;</font></td>
+								</tr>
+							</table>
+							<p align="left">If the change is made after Flex 
+							Builder project is created, make sure to reload your 
+							Flex project since Flex Builder caches and does not 
+							refresh server configuration. No additional 
+							configuration or special programming consideration 
+							needed, as Flex runtime automatically re-routes all 
+							remoting requests via the &quot;weborb-rtmp&quot; channel.</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+</body>
+
+</html>

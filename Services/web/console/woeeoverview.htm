@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>WebORB Presentation Server</title>
+<style>
+<!--
+td           { font-family: Tahoma; font-size: 10pt }
+.bottomBorder { 
+	border-bottom-style: solid; 
+	border-bottom-width: 1px 
+}
+-->
+</style>
+</head>
+
+<body topmargin="20" leftmargin="0" style="font-family: Tahoma; font-size: 10pt">
+
+		<div align="center">
+			<p align="left"><font face="Arial" style="font-size: 20pt">
+			WebORB Messaging Server</font><font color="#FF8000" face="Arial" style="font-size: 20pt"> 
+			Overview</font></p>
+			<table border="0" style="border-collapse: collapse" width="80%" cellpadding="3" id="table3">
+				<tr>
+					<td>
+					<p><b>Introduction</b><p>WebORB Messaging adds support for Flex Messaging and real-time video streaming for Flex 
+					and Flash clients. By using 
+					WebORB Messaging Server, your online applications can 
+					reach new level of interactivity:<ul>
+						<li>Client programs can now message each other in 
+						real-time</li>
+						<li>Use Flex Remoting to invoke server objects via a 
+						messaging channel</li>
+						<li>Subscribe to server updates and receive them 
+						asynchronously without any polling</li>
+						<li>Interact with native server-side applications</li>
+						<li>Stream rich media content from the camera and 
+						microphone accessed in the client application to the 
+						server</li>
+						<li>Stream video and audio from the server into the 
+						client program</li>
+						</ul>
+						<p>The product provides an implementation of RTMP 
+						(real-time messaging protocol) and thus supports client 
+						applications using the following Flex/Flash streaming 
+						and messaging APIs:<blockquote>
+							<p>Flex ActionScript API:<ul>
+								<li>mx.messaging.Producer (or mx:Producer MXML 
+								tag)</li>
+								<li>mx.messaging.Consumer (or mx:Consumer MXML 
+								tag)</li>
+								<li>flash.net.NetConnection</li>
+								<li>flash.net.NetStream</li>
+								<li>flash.net.SharedObject</li>
+								<li>flash.media.Video</li>
+								</ul>
+								<p>Flash API:</p>
+								<ul>
+									<li>NetConnection</li>
+									<li>NetStream</li>
+									<li>SharedObject</li>
+									</ul>
+									</blockquote>
+									<p><b>Execution Modes</b></p>
+									<p>WebORB Messaging server can run inside of an ASP.NET application (requires .NET framework 
+									version 2.0 or higher), or can be started in 
+									the standalone mode where no web server is 
+									required. Alternatively, it is possible to 
+									create a Windows service using WebORB server 
+									API.</p>
+									<p>When hosted in a ASP.NET application 
+									WebORB starts via the Application listener 
+									in Global.asax. The file resides in the root 
+									directory of the application and is 
+									automatically compiled upon initial 
+									application request. The server runs on a 
+									special port since the messaging protocol 
+									requires a dedicated TCP/IP socket and 
+									cannot be transported over HTTP. The default 
+									port is 2037. To change the port, modify 
+									Global.asax and make sure to make the same 
+									change in WEB-INF/flex/services-config.xml</p>
+									<p>To run WebORB in the standalone mode, run 
+									weborbee.exe in a command prompt window. The 
+									executable is located in the root of the 
+									weborb's default virtual directory (Inetpub/wwwroot/weborb30).
+									</p>
+									<p>Both hosted and standalone application 
+									modes use the same configuration files - 
+									weborb.config from the root and 
+									WEB-INF/flex/*.xml (used for Flex 
+									application configuration).</p>
+									<p><b>Flex Messaging</b></p>
+									<p>WebORB automatically connects Flex 
+									clients using messaging API 
+									(Producer/Consumer) to MSMQ queues. A queue 
+									always corresponds to a messaging 
+									destination defined in 
+									WEB-INF/flex/messaging-config.xml. By 
+									default WebORB creates local private MSMQ 
+									queues, however destination configuration 
+									can instruct the product to create remotely 
+									located public queues instead. Flex Producer 
+									objects become queue publishers, Flex 
+									Consumers are queue subscribers. WebORB 
+									functions as an adapter between MSMQ and 
+									Flex clients. Since MSMQ is available for 
+									any Windows/.NET process, native 
+									applications can interact with Flex clients 
+									by exchanging messages via MSMQ. Future 
+									releases of the product will include 
+									examples demonstrating this functionality.</p>
+									<p><b>Messaging Applications</b></p>
+									<p>Flex/Flash clients using NetConnection 
+									API connect to an 'Application' residing on 
+									the server. For example the following code 
+									connects to &quot;SharedObjectsApp&quot;:</p>
+									<div align="center">
+										<table border="3" style="border-collapse: collapse" cellpadding="3" id="table4" bgcolor="#F5F5F5" bordercolor="#DFDFDF">
+											<tr>
+												<td><font face="Courier New">var 
+												nc:NetConnection = new 
+												NetConnection(); <br>
+												var uri:String = 
+												ServerConfig.getChannel( &quot;my-rtmp&quot; 
+												).endpoint;<br>
+												nc.objectEncoding = 
+												ObjectEncoding.AMF0;<br>
+												nc.connect( uri + &quot;/<b>SharedObjectsApp</b>&quot; 
+												);</font></td>
+											</tr>
+										</table>
+									</div>
+									<p>WebORB Messaging Server supports this concept 
+									via application folders located inside of 
+									the /Applications directory located in the 
+									root of the ASP.NET application (hosted 
+									mode) or the same folder where weborbee.exe 
+									is started from (standalone mode). Both 
+									hosted and standalone WebORB scans the 
+									Applications folder to locate all deployed 
+									applications. An application can have an 
+									option configuration file - app.config. 
+									Currently application configuration file is 
+									used only to configure custom application 
+									handler. Application handler is a .NET class 
+									containing application logic that can be 
+									invoked by Flex/Flash clients using the 
+									NetConnection.call API. Additionally 
+									application handler can be configured to be 
+									a listener for many application live cycle 
+									events like application start/stop, client 
+									connect/disconnect, etc. Application handler 
+									must implement 
+									Weborb.Messaging.Api.IScopeHandler or can 
+									simply extend 
+									Weborb.Messaging.Server.Adapter.ApplicationAdapter 
+									(see VideoChat or Stream Recording examples 
+									for sample code).</td>
+				</tr>
+			</table>
+		</div>
+
+</body>
+
+</html>

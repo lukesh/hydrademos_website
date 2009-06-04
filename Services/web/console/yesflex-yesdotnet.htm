@@ -1,0 +1,522 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>WebORB Presentation Server</title>
+<style>
+<!--
+td           { font-family: Tahoma; font-size: 10pt }
+.bottomBorder { 
+	border-bottom-style: solid; 
+	border-bottom-width: 1px 
+}
+
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+-->
+</style>
+</head>
+
+<body topmargin="20" leftmargin="0" style="font-family: Tahoma; font-size: 10pt">
+
+		<div align="center">
+			<p align="left"><font face="Arial" style="font-size: 20pt">Getting Started<font color="#FF8000">
+			with WebORB</font></font></p>
+			<table border="0" style="border-collapse: collapse" width="80%" cellpadding="3" id="table3">
+				<tr>
+					<td><h4>Introduction</h4>
+					<p>If you are familiar with both .NET and Flex you will 
+					be cruising in a second. Below is a brief summary to keep in 
+					mind when integrating Flex with .NET using WebORB:<ul>
+						<li>WebORB can plug in into any ASP.NET application as 
+						an HTTPHandler (WebORB http handler must be registered in 
+						web.config)</li>
+						<li>WebORB automatically exposes .NET classes as remoting services to Flex clients 
+						from all assemblies in the ASP.NET application 
+						(additional configuration required to secure and limit 
+						access)</li>
+						<li>WebORB does not require any modifications to the 
+						classes consumed from Flex, Flash, AJAX or Silverlight</li>
+						<li>WebORB implements the AMF3 protocol, as a result, 
+						Flex client application can use the RemoteObject tag/API 
+						to invoke .NET methods (WebORB also supports the AMF0 and RTMP protocols)</li>
+						<li>WebORB uses the same configuration files as Adobe's 
+						Flex Builder. The files are located in 
+						WEB-INF/flex. </li>
+						<li>You can explicitly expose a .NET class as a 
+						remoting destination by registering it in WEB-INF/flex/remoting-config.xml 
+						(this is not a required step as classes are implicitly 
+						exposed through the &quot;GenericDestination&quot; - see below)</li>
+						</ul>
+						<p>The goal of this guide is to demonstrate a Flex 
+						Remoting invocation of a method in a .NET class. The 
+						steps below will guide you through the process.</p>
+						<h4>Installation</h4>
+						<p>The simplest way to get started is to use the default 
+						installation of the product. Later you can use the 
+						&quot;Deployment&quot; feature of this console to deploy to the 
+						product to any other virtual directory.</p>
+						<p>The physical location of the WebORB installation on 
+						the disk should be /Inetpub/wwwroot/weborb30, which 
+						corresponds to the <a href="http://locahost/weborb30">http://locahost/weborb30</a> path. Below is a brief 
+						summary of the installation directory structure:</p>
+						<div align="center">
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table4" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF" width="181"><font face="Courier New">
+									virtual <br>
+									directory <br>
+									root<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">bin<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">console<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">examples<br>
+&nbsp;&#9474;&nbsp; &#9474;<br>
+&nbsp;&#9474;&nbsp; &#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">flex<br>
+&nbsp;&#9474;&nbsp; &#9474;<br>
+&nbsp;&#9474;&nbsp; &#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">flash<br>
+&nbsp;&#9474;&nbsp; &#9474;<br>
+&nbsp;&#9474;&nbsp; &#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">silverlight<br>
+&nbsp;&#9474;&nbsp; &#9474;<br>
+&nbsp;&#9474;&nbsp; &#9492;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">ajax<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">logs<br>
+&nbsp;&#9474;<br>
+&nbsp;&#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">WEB-INF<br>
+&nbsp;&#9474;&nbsp; &#9474;<br>
+&nbsp;&#9474;&nbsp; &#9492;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">flex <br>
+&nbsp;&#9474;<br>
+&nbsp;&#9492;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">weborbassets<br>
+&nbsp;&nbsp;&nbsp; &#9474;<br>
+&nbsp;&nbsp;&nbsp; &#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">codegen<br>
+&nbsp;&nbsp;&nbsp; &#9474;<br>
+&nbsp;&nbsp;&nbsp; &#9500;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">silverlight<br>
+&nbsp;&nbsp;&nbsp; &#9474;<br>
+&nbsp;&nbsp;&nbsp; &#9492;&#9472;<img border="0" src="images/folder_closed.png" width="12" height="12">uploads</font></td>
+									<td valign="top"><font face="Courier New"><br>
+									- contains weborb configuration file 
+									(weborb.config),<br>
+									&nbsp;database files used by examples
+									<br>
+									<br>
+									- contains application's assembly files<br>
+									<br>
+									- contains weborb console files<br>
+									<br>
+									- weborb examples <br>
+&nbsp; (should be accessed 
+									through the console)<br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+									- weborb log files<br>
+									<br>
+									<br>
+									<br>
+									- flex integration configuration 
+									files<br>
+									<br>
+									<br>
+									<br>
+									- contains code generation templates 
+									(used by console)<br>
+									<br>
+									- contains silverlight client library<br>
+									<br>
+									- placeholder for flex file upload</font></td>
+								</tr>
+							</table>
+							<h4 align="left">Developing a .NET class</h4>
+							<p align="left">The example used in this guide will 
+							be invoking the C# method shown below. The method 
+							creates and returns a data structure with some basic 
+							information about the server-side environment:</p>
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table5" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+<p class="MsoNormal" style="text-autospace: none"><b>
+<span style="font-size: 9.0pt; font-family: Courier New; color: blue">using</span> <span style="font-size: 9.0pt; font-family: Courier New">System;</span><span style="font-size: 9.0pt; font-family: Courier New; color: blue"><br>
+using</span> <span style="font-size: 9.0pt; font-family: Courier New">System.Web;<br>
+</span>
+<br><span style="font-size: 9.0pt; font-family: Courier New; color: blue">namespace</span></b><span style="font-size: 9.0pt; font-family: Courier New"> 
+GettingStarted.Examples</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">{</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">class</span></b>
+<span style="color:purple">ComputerInfoService</span></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp; {</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <span style="color:purple">
+ComputerInfo</span> getComputerInfo( <span style="color:purple">String</span> 
+requestId )</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="color:purple">ComputerInfo</span> computerInfo = <b>
+<span style="color:blue">new</span></b> <span style="color:purple">ComputerInfo</span>();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+computerInfo.serverName = <span style="color:purple">Environment</span>.MachineName;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+computerInfo.clrVersion = <span style="color:purple">Environment</span>.Version.ToString();</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+computerInfo.clrVendor = <b><span style="color:green">&quot;Microsoft&quot;</span></b>;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+computerInfo.os = <span style="color:purple">Environment</span>.OSVersion.Platform.ToString();</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+computerInfo.osVersion = <span style="color:purple">Environment</span>.OSVersion.Version.ToString();</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+computerInfo.requestId = requestId;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">return</span></b> computerInfo;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp; }</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">class</span></b>
+<span style="color:purple">ComputerInfo</span></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp; {</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">string</span></b> 
+serverName;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">string</span></b> 
+clrVersion;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">string</span></b> 
+clrVendor;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">string</span></b> 
+os;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">string</span></b> 
+osVersion;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>
+<span style="color:blue">public</span></b> <b><span style="color:blue">string</span></b> 
+requestId;</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">&nbsp;&nbsp;&nbsp; }</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-size: 9.0pt; font-family: Courier New">}</span></p>
+									
+									</td>
+								</tr>
+							</table>
+							<p align="left">The next step is to compile the .NET 
+							code and deploy it into WebORB.
+							You can copy and paste the code as it is shown above 
+							or download the source (and the compiled assembly 
+							DLL) from
+							<a href="../examples/quickstart/server-side/gettingstarted_computerservice.zip">here</a>. 
+							If you would like to skip the compilation step and 
+							proceed to the deployment, use the assembly included 
+							in the zip file. Otherwise create a Visual Studio 
+							project to produce a class library from the code 
+							shown above.</p>
+							<h4 align="left">Deploying .NET assembly</h4>
+							<p align="left">There are two ways to deploy an 
+							assembly:</p>
+							<ol>
+								<li>
+								<p align="left">You can copy the assembly dll 
+								into the /bin folder of the weborb ASP.NET 
+								application (the virtual directory is mapped to c:/Inetpub/wwwroot/weborb30)<br>
+								<br>
+								or<br>
+&nbsp;</li>
+								<li>
+								<p align="left">Use the &quot;Deployment&quot; tab of this 
+								management console to upload assembly into the 
+								selected, weborb-enabled virtual directory.</li>
+							</ol>
+							<p align="left">The end result should be the same - 
+							the classes from the deployed assembly can be 
+							invoked from Flex. </p>
+							<h4 align="left">Using WebORB Console to 
+							Inspect/Invoke a .NET class</h4>
+							<p align="left">
+							<img border="1" src="images/yesfle1.gif" align="left" hspace="10"></p>
+							<p align="left">The &quot;Services&quot; tab of the management 
+							console can ensure the classes are 
+							recognized by WebORB. The Service 
+							Browser in the Services tab lets you locate a class by 
+							navigating the namespace tree. Once a class is 
+							selected, the console generates the client-side code 
+							required to access the remote class. You do not have 
+							to use the generated code and can easily create your 
+							own (see instructions below). </p>
+							<p align="left">
+							<img border="1" src="images/yesfle2.jpg" align="left" hspace="10">Additionally, 
+							if a class method is selected, the console switches 
+							to the &quot;Test Drive&quot; tab which lets you invoke the 
+							remote method right from the console. The console 
+							inspects the signature of the method and builds a 
+							dynamic interface to allow the user to enter 
+							argument values. For example, for the method shown 
+							above, there would be just one field for the &quot;requestId&quot; 
+							argument. Once you enter the argument values, click 
+							the &quot;Invoke&quot; button to perform a remote method 
+							invocation for the selected method. The console 
+							displays the return value in a tree-like data 
+							structure.</p>
+							<h4 align="left">Creating a Flex Project</h4>
+							<p align="left">To create a Flex Builder project and configure it to work with WebORB, 
+							follow the instructions from
+							<a target="_blank" href="http://www.themidnightcoders.com/products/weborb-for-net/developer-den/technical-articles/setting-up-flex-builder-to-work-with-weborb.html">
+							this article</a>. When creating a project in Flex Builder for this getting started guide, 
+							make sure to assign the name &quot;GettingStartedProject&quot; for your Flex Builder project.</p>
+							<h4 align="left">Flex client code</h4>
+							<p align="left">Client side application's logic for 
+							this example is very straight-forward. The code 
+							must create a RemoteObject to invoke the remote 
+							method and have controls to visualize server 
+							response. The code below demonstrates the 
+							usage of the RemoteObject tag and the&nbsp; 
+							mx.rpc.remoting.RemoteObject API for the .NET class 
+							above:</p>
+							<p align="left">using MXML:</p>
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table6" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+<font face="Courier New"><font color="#0000FF">&lt;mx:RemoteObject</font> id=&quot;<font color="#800000">compinfo</font>&quot;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+destination=&quot;<font color="#800000">GenericDestination</font>&quot;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+source=&quot;</font><font color="#800000"><span style="font-size: 9.0pt; font-family: Courier New">GettingStarted.Examples</span></font><font face="Courier New"><font color="#800000">.ComputerInfoService</font>&quot;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+showBusyCursor=&quot;<font color="#800000">true</font>&quot;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+fault=&quot;faultHandler(event)&quot; &gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;mx:method name=&quot;<font color="#800000">getComputerInfo</font>&quot; 
+result=&quot;<font color="#800000">getComputerInfoHandler(event)</font>&quot;/&gt;<br>
+<font color="#0000FF">&lt;/mx:RemoteObject&gt;</font></font></td>
+								</tr>
+							</table>
+							<p align="left">using API:</p>
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table7" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+<font face="Courier New">var compinfo:RemoteObject = new RemoteObject( &quot;<font color="#800000">GenericDestination</font>&quot; 
+);<br>
+compinfo.source=&quot;</font><font color="#800000"><span style="font-size: 9.0pt; font-family: Courier New">GettingStarted.Examples</span></font><font face="Courier New"><font color="#800000">.ComputerInfoService</font>&quot;;<br>
+compinfo.addEventListener( FaultEvent.FAULT, faultHandler );<br>
+compinfo.getComputerInfo.addEventListener( Result.EVENT, getComputerInfoHandler 
+);</font></td>
+								</tr>
+							</table>
+							<p align="left">There are two response handlers: one 
+							is responsible to handle errors (faultHandler) and 
+							the other will be processing remote method 
+							invocation return data (getComputerInfoHandler). 
+							Both functions are shown below:</p>
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table8" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+<font face="Courier New"><font color="#0000FF">private</font>
+<font color="#008000">function</font> faultHandler( event:FaultEvent ):<font color="#0000FF">void</font>
+<br>
+{<br>
+&nbsp;&nbsp;&nbsp; Alert.show( event.fault.faultString, <font color="#800000">&quot;Error&quot;
+</font>); <br>
+}<font color="#0000FF"><br>
+<br>
+private</font> <font color="#008000">function</font> getComputerInfoHandler( event:ResultEvent ):<font color="#0000FF">void</font><br>
+{<br>
+&nbsp;&nbsp;&nbsp; serverName.text = event.result.serverName;
+     <br>
+&nbsp;&nbsp;&nbsp; clrVersion.text = event.result.clrVersion; 
+     <br>
+&nbsp;&nbsp;&nbsp; clrVendor.text = event.result.clrVendor;
+     <br>
+&nbsp;&nbsp;&nbsp; os.text = event.result.os;
+     <br>
+&nbsp;&nbsp;&nbsp; osVersion.text = event.result.osVersion;
+     <br>
+&nbsp;&nbsp;&nbsp; requestId.text = event.result.requestId;
+<br>
+}&nbsp; </font>
+									</td>
+								</tr>
+							</table>
+							<p align="left">And finally the user interface part 
+							to display the response could have the following 
+							MXML markup:</p>
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table9" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+<font face="Courier New"><font color="#0000FF">&lt;mx:Panel</font> width=&quot;<font color="#800000">476</font>&quot; 
+height=&quot;<font color="#800000">281</font>&quot; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; layout=&quot;<font color="#800000">absolute</font>&quot; 
+title=&quot;<font color="#800000">Getting Started Example</font>&quot; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cornerRadius=&quot;<font color="#800000">0</font>&quot; 
+backgroundColor=&quot;#ffffff&quot;<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Label</font> x=&quot;<font color="#800000">292</font>&quot; 
+y=&quot;<font color="#800000">-23</font>&quot; text=&quot;<font color="#800000">Flex Remoting 
+with WebORB</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Label</font> text=&quot;<font color="#800000">Server 
+Name</font>&quot; y=&quot;<font color="#800000">33</font>&quot; x=&quot;<font color="#800000">47</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Label</font> x=&quot;<font color="#800000">46</font>&quot; 
+y=&quot;<font color="#800000">59</font>&quot; text=&quot;<font color="#800000">CLR Version</font>&quot; 
+/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Label</font> x=&quot;<font color="#800000">46</font>&quot; 
+y=&quot;<font color="#800000">85</font>&quot; text=&quot;<font color="#800000">CLR Vendor</font>&quot; 
+/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Label</font> x=&quot;<font color="#800000">46</font>&quot; 
+y=&quot;<font color="#800000">111</font>&quot; text=&quot;<font color="#800000">OS</font>&quot; /<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Label</font> x=&quot;<font color="#800000">46</font>&quot; 
+y=&quot;<font color="#800000">137</font>&quot; text=&quot;<font color="#800000">OS Version</font>&quot; 
+/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Label</font> x=&quot;<font color="#800000">46</font>&quot; 
+y=&quot;<font color="#800000">163</font>&quot; text=&quot;<font color="#800000">Request ID</font>&quot; 
+/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:TextInput</font> x=&quot;<font color="#800000">154</font>&quot; 
+y=&quot;<font color="#800000">34</font>&quot; id=&quot;<font color="#800000">serverName</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:TextInput</font> x=&quot;<font color="#800000">154</font>&quot; 
+y=&quot;<font color="#800000">60</font>&quot; id=&quot;<font color="#800000">clrVersion</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:TextInput</font> x=&quot;<font color="#800000">154</font>&quot; 
+y=&quot;<font color="#800000">86</font>&quot; id=&quot;<font color="#800000">clrVendor</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:TextInput</font> x=&quot;<font color="#800000">154</font>&quot; 
+y=&quot;<font color="#800000">112</font>&quot; id=&quot;<font color="#800000">os</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:TextInput</font> x=&quot;<font color="#800000">154</font>&quot; 
+y=&quot;<font color="#800000">138</font>&quot; id=&quot;<font color="#800000">osVersion</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:TextInput</font> x=&quot;<font color="#800000">154</font>&quot; 
+y=&quot;<font color="#800000">164</font>&quot; id=&quot;<font color="#800000">requestId</font>&quot;/<font color="#0000FF">&gt;</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">&lt;mx:Button</font> x=&quot;<font color="#800000">47</font>&quot; 
+y=&quot;<font color="#800000">209</font>&quot; label=&quot;<font color="#800000">Send Request</font>&quot; 
+themeColor=&quot;<font color="#800000">haloBlue</font>&quot; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+click=&quot;compinfo.getComputerInfo( reqId++ )&quot;/<font color="#0000FF">&gt;</font><br>
+<font color="#0000FF">&lt;/mx:Panel&gt;</font></font></td>
+								</tr>
+							</table>
+							<p align="left">Full client code listing is 
+							available
+							<a href="../examples/quickstart/flex/GettingStartedProject.mxml">
+							here</a>.</p>
+							<p align="left">Compile and run the project. You 
+							should have a working Flex application using Flex 
+							Remoting with .NET.</p>
+							<h4 align="left">Next steps</h4>
+							<ul>
+								<li>
+								<p align="left">We recommend to explore the 
+								Examples section in this console. The examples 
+								demonstrate various invocation techniques and 
+								patterns.</li>
+								<li>
+								<p align="left">When you decide to deploy WebORB 
+								into your own ASP.NET application, you can use 
+								the &quot;Deployment&quot; tab. Deployment requires the 
+								ASPNET user account to have Write permissions so 
+								WebORB can deploy itself into your virtual 
+								directory. If you decide to deploy it manually, 
+								below is a list of steps to follow:<ul>
+									<li>
+									<p align="left">Copy the following files 
+									from the WebORB installation directory:<br>
+									- /weborb.config<br>
+									- /bin/weborb.dll<br>
+									- /WEB-INF folder and all its contents<br>
+									<br>
+									if you intend to use this console from your 
+									installation:<br>
+									- /weborbconsole.html<br>
+									- /console<br>
+									- /weborbassets<br>
+									- /examples<br>
+									- all .mdb files from the root<br>
+&nbsp;</li>
+									<li>
+									<p align="left">Create /logs folder in your 
+									application</li>
+									<li>
+									<p align="left">Modify web.config in your 
+									application to 
+									register WebORB HTTPHandler as shown below:</p>
+									<div align="left">
+							<table style="border:5px solid #C0C0C0; border-collapse: collapse" cellpadding="3" bgcolor="#EEEEEE" id="table10" cellspacing="2" >
+								<tr>
+									<td valign="top" bgcolor="#FFFFFF">
+<font face="Courier New">&lt;configuration&gt;
+  <br>
+&nbsp; &lt;system.web&gt;
+    <br>
+&nbsp;&nbsp;&nbsp; &lt;httpHandlers&gt;
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;add verb=&quot;*&quot; path=&quot;weborb.aspx&quot; type=&quot;Weborb.ORBHttpHandler&quot;/&gt;
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;!-- add the codegen.aspx handler, only if you 
+plan to use codegen from the console --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;add verb=&quot;*&quot; path=&quot;codegen.aspx&quot; type=&quot;Weborb.Management.CodeGen.CodegeneratorHttpHandler&quot;/&gt;
+    <br>
+&nbsp;&nbsp;&nbsp; &lt;/httpHandlers&gt;
+  <br>
+&nbsp; &lt;system.web&gt;
+<br>
+&lt;configuration&gt;</font></td>
+								</tr>
+							</table>
+									</div>
+									</li>
+								</ul>
+								</li>
+							</ul>
+							</div>
+						</td>
+				</tr>
+			</table>
+		</div>
+		<p>&nbsp;</p>
+		<font face="Tahoma" size="2">
+		<p align="center">
+		&nbsp;</p>
+		<p align="center">&nbsp;</p></font>
+      <p align="center"><font face="Tahoma" size="2">Copyright (c) Midnight 
+      Coders, LLC 2003-2006. All Right Reserved</font>
+  </center>
+</div>
+
+</body>
+
+</html>
