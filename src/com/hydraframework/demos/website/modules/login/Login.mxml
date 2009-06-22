@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentComponentBase xmlns="com.hydraframework.plugins.navigation.view.*"
+					  xmlns:mx="http://www.adobe.com/2006/mxml"
+					  width="100%"
+					  height="100%"
+  					  preinitialize="HydraFramework.initialize(this, LoginFacade)"
+					  xmlns:waiter="com.hydraframework.demos.website.view.components.waiter.*">
+	<mx:Script>
+		<![CDATA[
+			import com.hydraframework.core.HydraFramework;
+			import flash.utils.setTimeout;
+
+			override public function transitionOut():void
+			{
+				super.transitionOut();
+				this.currentState="hide";
+				setTimeout(this.dispatchTransitionOut, 501);
+			}
+		]]>
+	</mx:Script>
+	<states>
+		<mx:State name="hide"/>
+	</states>
+	<transitions>
+		<mx:Transition fromState="*"
+					   toState="hide">
+			<mx:AnimateProperty property="alpha"
+								target="{this}"
+								toValue="0"
+								duration="500"/>
+		</mx:Transition>
+	</transitions>
+	<mx:VBox width="100%"
+			 height="100%">
+	<mx:Text text="Login"/>
+		<mx:Text text="Username"/>
+		<mx:TextInput id="wLoginId" />
+		<mx:Text text="Password"/>
+		<mx:TextInput displayAsPassword="true" id="wPassword" />
+		
+		<mx:Text id="wErrorMessage" />
+		<mx:Button id="wLogin" label="Login" />
+
+	</mx:VBox>
+</ContentComponentBase>
