@@ -21,6 +21,8 @@
 	<mx:HBox horizontalGap="5">
 		<components:NavigationButton label="Home"
 									 click="dispatchEvent(new NavigationEvent(NavigationEvent.NAVIGATE, ''))"/>
+		<components:NavigationButton label="Login"
+									 click="dispatchEvent(new NavigationEvent(NavigationEvent.NAVIGATE, 'login'))"/>
 		<components:NavigationButton label="Users"
 									 click="dispatchEvent(new NavigationEvent(NavigationEvent.NAVIGATE, 'users'))"/>
 	</mx:HBox>

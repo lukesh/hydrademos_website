@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentComponentBase xmlns="com.hydraframework.plugins.navigation.view.*"
 					  xmlns:mx="http://www.adobe.com/2006/mxml"
+ 					  preinitialize="HydraFramework.initialize(this, HomeFacade)"
 					  width="100%"
 					  height="100%">
 	<mx:Script>
 		<![CDATA[
 			import com.hydraframework.core.HydraFramework;
+			import com.hydraframework.plugins.authentication.AuthenticationManager;
 			import flash.utils.setTimeout;
 
 			override public function transitionOut():void {
@@ -15,6 +17,8 @@
 			}
 		]]>
 	</mx:Script>
+	
+	<mx:Binding source="{AuthenticationManager.getInstance().isLoggedOn ? AuthenticationManager.getInstance().identity.displayName : 'Unauthenticated User' }" destination="wWelcomeMessage.text" />
 	<states>
 		<mx:State name="hide"/>
 	</states>
@@ -27,6 +31,10 @@
 								duration="500"/>
 		</mx:Transition>
 	</transitions>
-
-	<mx:Text text="Home"/>
+	<mx:VBox>
+		<mx:Text text="Home"/>
+		<mx:Text id="wWelcomeMessage" />
+		
+	</mx:VBox>
+		
 </ContentComponentBase>

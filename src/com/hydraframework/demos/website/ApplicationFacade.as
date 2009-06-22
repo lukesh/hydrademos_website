@@ -7,6 +7,7 @@ package com.hydraframework.demos.website {
 	import com.hydraframework.plugins.error.ErrorManager;
 	import com.hydraframework.plugins.navigation.NavigationPlugin;
 	import com.hydraframework.plugins.navigation.PageNavigationPlugin;
+	import com.hydraframework.plugins.authentication.AuthenticationManager;
 	
 	import mx.core.IUIComponent;
 
@@ -40,6 +41,9 @@ package com.hydraframework.demos.website {
 			// PageNavigationPlugin automatically resolves dependency on NavigationPlugin if we
 			// didn't register it above.
 			this.registerPlugin(new PageNavigationPlugin(website.wContentContainer));
+			
+			// User Authentication and Authorization
+			this.registerPlugin(AuthenticationManager.getInstance());
 			
 			/*
 			   Mediators

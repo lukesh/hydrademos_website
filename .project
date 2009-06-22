@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>HydraProjects_Website_1_0_Demo</name>
+	<name>hydrademos_website</name>
 	<comment></comment>
 	<projects>
 		<project>HydraMVC_Core_0.3.0</project>
@@ -20,7 +20,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<location>/Applications/MAMP/htdocs/hydraframework/hydraprojects_website</location>
+			<location>C:/Inetpub/wwwroot/hydraframework/hydraprojects_website</location>
 		</link>
 	</linkedResources>
 </projectDescription>
