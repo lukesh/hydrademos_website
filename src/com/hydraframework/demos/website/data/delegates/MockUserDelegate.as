@@ -6,10 +6,10 @@ package com.hydraframework.demos.website.data.delegates {
 	import flash.utils.setTimeout;
 
 	import mx.collections.ArrayCollection;
-	import mx.core.mx_internal;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.ResultEvent;
 
+	import mx.core.mx_internal;
 	use namespace mx_internal;
 
 	public class MockUserDelegate implements IUserDelegate {
@@ -23,7 +23,6 @@ package com.hydraframework.demos.website.data.delegates {
 			mock_userList = new ArrayCollection();
 				
 			var user:IUser;
-			user = new User();
 
 			user = new User();
 			user.userId = 0;

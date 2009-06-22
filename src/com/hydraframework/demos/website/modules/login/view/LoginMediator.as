@@ -38,7 +38,7 @@ package com.hydraframework.demos.website.modules.login.view
 			var loginInfo:LoginInformation = new LoginInformation;
 			loginInfo.loginId = view.wLoginId.text;
 			loginInfo.password = view.wPassword.text;
-			this.sendNotification(new Notification(AuthenticationManager.LOGIN, loginInfo, Phase.REQUEST, true));
+			AuthenticationManager.getInstance().login(loginInfo);
 		}
 		
 		private function loginCompleted(event:Event):void

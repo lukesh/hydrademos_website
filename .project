@@ -20,7 +20,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<location>C:/Inetpub/wwwroot/hydraframework/hydraprojects_website</location>
+			<location>/Applications/MAMP/htdocs/hydraframework/hydrademos_website</location>
 		</link>
 	</linkedResources>
 </projectDescription>
