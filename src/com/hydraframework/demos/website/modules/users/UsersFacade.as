@@ -1,7 +1,7 @@
 package com.hydraframework.demos.website.modules.users {
 	import com.hydraframework.core.mvc.patterns.facade.Facade;
-	import com.hydraframework.demos.website.data.delegates.MockUserDelegate;
 	import com.hydraframework.demos.website.modules.users.controller.*;
+	import com.hydraframework.demos.website.modules.users.data.delegates.MockUserDelegate;
 	import com.hydraframework.demos.website.modules.users.model.UsersProxy;
 	import com.hydraframework.demos.website.modules.users.view.UsersMediator;
 	

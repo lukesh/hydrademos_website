@@ -1,10 +1,10 @@
 package com.hydraframework.demos.website.modules.users.view {
 	import com.hydraframework.core.mvc.events.Notification;
 	import com.hydraframework.core.mvc.patterns.mediator.Mediator;
-	import com.hydraframework.demos.website.data.descriptors.User;
-	import com.hydraframework.demos.website.data.interfaces.IUser;
 	import com.hydraframework.demos.website.modules.users.Users;
 	import com.hydraframework.demos.website.modules.users.UsersFacade;
+	import com.hydraframework.demos.website.modules.users.data.descriptors.User;
+	import com.hydraframework.demos.website.modules.users.data.interfaces.IUser;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;

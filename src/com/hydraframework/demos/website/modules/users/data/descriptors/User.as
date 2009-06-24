@@ -1,5 +1,5 @@
-package com.hydraframework.demos.website.data.descriptors {
-	import com.hydraframework.demos.website.data.interfaces.IUser;
+package com.hydraframework.demos.website.modules.users.data.descriptors {
+	import com.hydraframework.demos.website.modules.users.data.interfaces.IUser;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;

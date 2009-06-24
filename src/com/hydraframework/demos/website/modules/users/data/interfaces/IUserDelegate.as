@@ -1,4 +1,4 @@
-package com.hydraframework.demos.website.data.interfaces {
+package com.hydraframework.demos.website.modules.users.data.interfaces {
 	import mx.rpc.AsyncToken;
 	
 	public interface IUserDelegate {

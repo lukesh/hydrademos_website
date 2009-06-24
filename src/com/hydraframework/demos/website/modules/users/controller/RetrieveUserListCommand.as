@@ -2,7 +2,7 @@ package com.hydraframework.demos.website.modules.users.controller {
 	import com.hydraframework.core.mvc.events.Notification;
 	import com.hydraframework.core.mvc.interfaces.IFacade;
 	import com.hydraframework.core.mvc.patterns.command.SimpleCommand;
-	import com.hydraframework.demos.website.data.interfaces.IUserDelegate;
+	import com.hydraframework.demos.website.modules.users.data.interfaces.IUserDelegate;
 	import com.hydraframework.demos.website.modules.users.model.UsersProxy;
 	
 	import mx.collections.ArrayCollection;

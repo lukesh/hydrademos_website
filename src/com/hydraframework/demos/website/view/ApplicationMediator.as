@@ -22,6 +22,7 @@ package com.hydraframework.demos.website.view {
 		
 		override public function initialize():void {
 			super.initialize();
+			trace("Mediator initialized.");
 			this.app.addEventListener(NavigationEvent.NAVIGATE, handleNavigationEvent);
 		}
 
