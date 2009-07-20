@@ -6,7 +6,6 @@ package com.hydraframework.demos.website {
 	import com.hydraframework.demos.website.model.ApplicationProxy;
 	import com.hydraframework.demos.website.view.ApplicationMediator;
 	import com.hydraframework.demos.website.view.BreadcrumbMediator;
-	import com.hydraframework.plugins.authentication.AuthenticationManager;
 	import com.hydraframework.plugins.configuration.ConfigurationManager;
 	import com.hydraframework.plugins.error.ErrorManager;
 	import com.hydraframework.plugins.navigation.NavigationPlugin;
@@ -47,10 +46,11 @@ package com.hydraframework.demos.website {
 			// Lightweight page-based navigation framework that integrates with NavigationPlugin
 			// PageNavigationPlugin automatically resolves dependency on NavigationPlugin if we
 			// didn't register it above.
+			
 			this.registerPlugin(new PageNavigationPlugin(website.wContentContainer));
 
 			// User Authentication and Authorization
-			this.registerPlugin(AuthenticationManager.getInstance());
+			//this.registerPlugin(AuthenticationManager.getInstance());
 
 			/*
 			   Proxies

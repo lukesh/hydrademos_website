@@ -1,10 +1,10 @@
-package com.hydraframework.demos.website.modules.users.controller {
+package com.hydraframework.demos.website.pages.users.controller {
 	import com.hydraframework.core.mvc.events.Notification;
 	import com.hydraframework.core.mvc.interfaces.IFacade;
 	import com.hydraframework.core.mvc.patterns.command.SimpleCommand;
-	import com.hydraframework.demos.website.modules.users.data.interfaces.IUser;
-	import com.hydraframework.demos.website.modules.users.data.interfaces.IUserDelegate;
-	import com.hydraframework.demos.website.modules.users.model.UsersProxy;
+	import com.hydraframework.demos.website.pages.users.data.interfaces.IUser;
+	import com.hydraframework.demos.website.pages.users.data.interfaces.IUserDelegate;
+	import com.hydraframework.demos.website.pages.users.model.UsersProxy;
 
 	public class SelectUserCommand extends SimpleCommand {
 		public function get proxy():UsersProxy {

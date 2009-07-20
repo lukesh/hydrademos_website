@@ -14,7 +14,7 @@
 <application path="Website.mxml"/>
 </applications>
 <modules>
-<module application="src/Website.mxml" destPath="com/hydraframework/demos/website/modules/users/Users.swf" optimize="true" sourcePath="src/com/hydraframework/demos/website/modules/users/Users.mxml"/>
+<module application="src/Website.mxml" destPath="com/hydraframework/demos/website/pages/users/Users.swf" optimize="true" sourcePath="src/com/hydraframework/demos/website/pages/users/Users.mxml"/>
 </modules>
 <buildCSSFiles/>
 </actionScriptProperties>

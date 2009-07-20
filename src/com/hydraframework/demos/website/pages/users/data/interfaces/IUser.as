@@ -1,4 +1,4 @@
-package com.hydraframework.demos.website.modules.users.data.interfaces {
+package com.hydraframework.demos.website.pages.users.data.interfaces {
 	import flash.events.IEventDispatcher;
 
 	public interface IUser extends IEventDispatcher {

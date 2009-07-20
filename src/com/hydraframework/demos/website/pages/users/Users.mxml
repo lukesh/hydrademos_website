@@ -7,8 +7,8 @@
 					  xmlns:waiter="com.hydraframework.demos.website.view.components.waiter.*">
 	<mx:Script>
 		<![CDATA[
-			import com.hydraframework.demos.website.modules.users.data.interfaces.IUser;
-			import com.hydraframework.demos.website.modules.users.UsersFacade;
+			import com.hydraframework.demos.website.pages.users.data.interfaces.IUser;
+			import com.hydraframework.demos.website.pages.users.UsersFacade;
 			import com.hydraframework.core.HydraFramework;
 			import flash.utils.setTimeout;
 

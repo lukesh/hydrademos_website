@@ -1,8 +1,8 @@
-package com.hydraframework.demos.website.modules.home
+package com.hydraframework.demos.website.pages.home
 {
 	import mx.core.IUIComponent;
 	import com.hydraframework.core.mvc.patterns.facade.Facade;
-	import com.hydraframework.demos.website.modules.home.view.HomeMediator;
+	import com.hydraframework.demos.website.pages.home.view.HomeMediator;
 
 	public class HomeFacade extends Facade
 	{

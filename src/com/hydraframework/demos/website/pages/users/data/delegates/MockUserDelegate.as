@@ -1,4 +1,4 @@
-package com.hydraframework.demos.website.data.delegates {
+package com.hydraframework.demos.website.pages.users.data.delegates {
 	import com.hydraframework.demos.website.pages.users.data.descriptors.User;
 	import com.hydraframework.demos.website.pages.users.data.interfaces.IUser;
 	import com.hydraframework.demos.website.pages.users.data.interfaces.IUserDelegate;
@@ -13,10 +13,10 @@ package com.hydraframework.demos.website.data.delegates {
 	import mx.rpc.events.ResultEvent;
 	use namespace mx_internal;
 
-	public class ImplUserDelegate implements IUserDelegate {
+	public class MockUserDelegate implements IUserDelegate {
 
 		public static var mock_userList:ArrayCollection;
-		
+
 		private var _responder:IResponder;
 		public function set responder(value:IResponder):void {
 			_responder = value;
@@ -25,7 +25,7 @@ package com.hydraframework.demos.website.data.delegates {
 			return _responder;
 		}
 		
-		public function ImplUserDelegate() {
+		public function MockUserDelegate() {
 			if (mock_userList)
 				return;
 
@@ -35,31 +35,31 @@ package com.hydraframework.demos.website.data.delegates {
 
 			user=new User();
 			user.userId=0;
-			user.firstName="Sir Francis";
+			user.firstName="Francis";
 			user.lastName="Lukesh";
 			mock_userList.addItem(user);
 
 			user=new User();
 			user.userId=1;
-			user.firstName="Sir James";
+			user.firstName="James";
 			user.lastName="Stevenson";
 			mock_userList.addItem(user);
 
 			user=new User();
 			user.userId=2;
-			user.firstName="Sir Winton";
+			user.firstName="Winton";
 			user.lastName="De Shong";
 			mock_userList.addItem(user);
 
 			user=new User();
 			user.userId=3;
-			user.firstName="Sir Evan";
+			user.firstName="Evan";
 			user.lastName="Keller";
 			mock_userList.addItem(user);
 
 			user=new User();
 			user.userId=4;
-			user.firstName="Sir Robert";
+			user.firstName="Robert";
 			user.lastName="Weiman";
 			mock_userList.addItem(user);
 		}

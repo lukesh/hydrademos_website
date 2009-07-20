@@ -1,9 +1,9 @@
-package com.hydraframework.demos.website.modules.users.model {
+package com.hydraframework.demos.website.pages.users.model {
 	import com.hydraframework.core.mvc.events.Notification;
 	import com.hydraframework.core.mvc.events.Phase;
 	import com.hydraframework.core.mvc.patterns.proxy.Proxy;
-	import com.hydraframework.demos.website.modules.users.UsersFacade;
-	import com.hydraframework.demos.website.modules.users.data.interfaces.IUser;
+	import com.hydraframework.demos.website.pages.users.UsersFacade;
+	import com.hydraframework.demos.website.pages.users.data.interfaces.IUser;
 	
 	import mx.collections.ArrayCollection;
 
