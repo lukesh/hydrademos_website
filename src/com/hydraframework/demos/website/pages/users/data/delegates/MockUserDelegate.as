@@ -25,6 +25,15 @@ package com.hydraframework.demos.website.pages.users.data.delegates {
 			return _responder;
 		}
 		
+		/**
+		 * This demonstrates a mock delegate. The purpose of a mock delegate
+		 * is to abstract the process of interacting with data from the actual
+		 * action of talking to a server. This allows you to create testable, 
+		 * encapsulated components, where you can specify server interactions
+		 * seperately at implementation time.
+		 * 
+		 * @author fran
+		 */
 		public function MockUserDelegate() {
 			if (mock_userList)
 				return;

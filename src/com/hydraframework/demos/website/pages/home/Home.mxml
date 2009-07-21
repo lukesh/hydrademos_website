@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentComponentBase xmlns="com.hydraframework.plugins.navigation.view.*"
-					  xmlns:mx="http://www.adobe.com/2006/mxml"
-					  preinitialize="HydraFramework.initialize(this, HomeFacade)"
-					  width="100%"
-					  height="100%">
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	preinitialize="HydraFramework.initialize(this, HomeFacade)"
+	width="100%"
+	height="100%">
 	<mx:Script>
 		<![CDATA[
 			import com.hydraframework.core.HydraFramework;
 			import com.hydraframework.plugins.authentication.AuthenticationManager;
 			import flash.utils.setTimeout;
 
-			override public function transitionOut():void
-			{
+			override public function transitionOut():void {
 				super.transitionOut();
 				this.currentState="hide";
 				setTimeout(this.dispatchTransitionOut, 501);
@@ -24,17 +23,16 @@
 	</states>
 	<transitions>
 		<mx:Transition fromState="*"
-					   toState="hide">
+			toState="hide">
 			<mx:AnimateProperty property="alpha"
-								target="{this}"
-								toValue="0"
-								duration="500"/>
+				target="{this}"
+				toValue="0"
+				duration="500"/>
 		</mx:Transition>
 	</transitions>
 	<mx:VBox>
 		<mx:Text text="Home"/>
 		<mx:Text id="wWelcomeMessage"/>
-
 	</mx:VBox>
 
 </ContentComponentBase>

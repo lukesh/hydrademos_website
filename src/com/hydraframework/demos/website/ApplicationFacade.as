@@ -6,39 +6,55 @@ package com.hydraframework.demos.website {
 	import com.hydraframework.demos.website.model.ApplicationProxy;
 	import com.hydraframework.demos.website.view.ApplicationMediator;
 	import com.hydraframework.demos.website.view.BreadcrumbMediator;
+	import com.hydraframework.plugins.authentication.AuthenticationManager;
 	import com.hydraframework.plugins.configuration.ConfigurationManager;
 	import com.hydraframework.plugins.error.ErrorManager;
 	import com.hydraframework.plugins.navigation.NavigationPlugin;
 	import com.hydraframework.plugins.navigation.PageNavigationPlugin;
-	
+
 	import mx.core.IUIComponent;
 
 	public class ApplicationFacade extends Facade {
-		public static const NAME:String = "ApplicationFacade";
+		public static const NAME:String="ApplicationFacade";
 
 		public function get website():Website {
 			return this.component as Website;
 		}
 
-		public function ApplicationFacade(component:IUIComponent = null) {
+		public function ApplicationFacade(component:IUIComponent=null) {
 			super(NAME, component);
 		}
 
 		override public function registerCore():void {
+			
 			/*
-			   Delegates
+			   ================================================================
+			   
+				   Delegates
+				   
+				   ------------------------------------------------------------
+				   
+				   An abstraction of data access that allows for encapsulated 
+				   component development and a single point of injection when 
+				   they're implemented.
+			   
+			   ================================================================
 			 */
+			 
 			this.registerDelegate(ImplUserDelegate, true);
+			
 			/*
-			   Plugins
-			   Notification-based mixins that dynamically extend the funcitonality of HydraMVC component.
+			   ================================================================
+			   
+				   Plugins
+				   
+				   ------------------------------------------------------------
+				   
+				   Notification-based mixins that dynamically extend the 
+				   funcitonality of HydraMVC component.
+			   
+			   ================================================================
 			 */
-
-			// Robust error logging
-			this.registerPlugin(ErrorManager.getInstance());
-
-			// XML-based application configuration designed for single or multi-developer projects
-			this.registerPlugin(ConfigurationManager.getInstance());
 
 			// Browser history management, separation of concerns for application state
 			this.registerPlugin(new NavigationPlugin());
@@ -46,24 +62,74 @@ package com.hydraframework.demos.website {
 			// Lightweight page-based navigation framework that integrates with NavigationPlugin
 			// PageNavigationPlugin automatically resolves dependency on NavigationPlugin if we
 			// didn't register it above.
-			
 			this.registerPlugin(new PageNavigationPlugin(website.wContentContainer));
 
+			/*
+			   ================================================================
+			   
+				   Managers
+				   
+				   ------------------------------------------------------------
+				   
+				   Singleton Plugins that maintain application-level state.
+			   
+			   ================================================================
+			 */
+			 
+			// Robust error logging
+			this.registerPlugin(ErrorManager.instance);
+
+			// XML-based application configuration designed for single or multi-developer projects
+			this.registerPlugin(ConfigurationManager.instance);
+
 			// User Authentication and Authorization
-			//this.registerPlugin(AuthenticationManager.getInstance());
+			this.registerPlugin(AuthenticationManager.instance);
 
 			/*
-			   Proxies
+			   ================================================================
+			   
+				   Proxies
+				   
+				   ------------------------------------------------------------
+				   
+				   Core actors that maintain the state of their data and are
+				   responsible for sending Notifications that reflect state
+				   changes.
+			   
+			   ================================================================
 			 */
 			this.registerProxy(new ApplicationProxy());
+			
 			/*
-			   Mediators
+			   ================================================================
+			   
+				   Mediators
+				   
+				   ------------------------------------------------------------
+				   
+				   Core actors that define how their view should react to
+				   Notifications.
+			   
+			   ================================================================
 			 */
+			 
 			this.registerMediator(new ApplicationMediator(website));
 			this.registerMediator(new BreadcrumbMediator(website.wBreadcrumb));
+
 			/*
-			   Controller
+			   ================================================================
+			   
+				   Controller
+				   
+				   ------------------------------------------------------------
+				   
+				   Map that registers Commands with Notification names. When
+				   a Notification is dispatched, an instance that corresponds
+				   with that Notification is created, and executed.
+			   
+			   ================================================================
 			 */
+			 
 			this.registerCommand(ConfigurationManager.CONFIGURATION_COMPLETE, ConfigurationCompleteCommand);
 			this.registerCommand(Facade.REGISTER, StartupCommand);
 		}

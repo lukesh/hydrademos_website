@@ -13,14 +13,43 @@ package com.hydraframework.demos.website.data.delegates {
 	import mx.rpc.events.ResultEvent;
 	use namespace mx_internal;
 
+	/**
+	 * This demonstrates an implementation delegate. It's not really, because
+	 * it is ALSO a mock delegate in that there is no real server interaction,
+	 * however it demonstrates how delegates can be dynamically specified in
+	 * the application.
+	 * 
+	 * In a real application, the implementation delegate would talk to the
+	 * server and transform responses into abstract data formats that your
+	 * components can use.
+	 * 
+	 * @author fran
+	 */
 	public class ImplUserDelegate implements IUserDelegate {
 
+		/**
+		 * 
+		 * @default 
+		 */
 		public static var mock_userList:ArrayCollection;
 		
+		/**
+		 * @private
+		 * 
+		 * Stores the responder object that the delegate will apply results
+		 * and faults to.
+		 */
 		private var _responder:IResponder;
+		
 		public function set responder(value:IResponder):void {
 			_responder = value;
 		}
+
+		/**
+		 * The delegate maintains a responder property of type IResponder.
+		 * When the delegate gets a response from the server, it is responsible
+		 * transforming the data and applying it to the responder.
+		 */
 		public function get responder():IResponder {
 			return _responder;
 		}
