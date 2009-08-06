@@ -2,6 +2,7 @@ package com.hydraframework.demos.website.controller {
 	import com.hydraframework.core.mvc.events.Notification;
 	import com.hydraframework.core.mvc.interfaces.IFacade;
 	import com.hydraframework.core.mvc.patterns.command.SimpleCommand;
+	import com.hydraframework.plugins.configuration.ConfigurationManager;
 
 	/**
 	 * The StartupCommand is typically mapped to the Facade.REGISTER
@@ -24,6 +25,7 @@ package com.hydraframework.demos.website.controller {
 		override public function execute(notification:Notification):void {
 			if (notification.isRequest()) {
 				trace("StartupCommand executing...");
+				this.facade.sendNotification(new Notification(ConfigurationManager.CONFIGURE));
 			}
 		}
 	}
