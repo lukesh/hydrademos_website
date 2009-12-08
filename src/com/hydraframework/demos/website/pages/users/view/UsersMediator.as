@@ -25,13 +25,17 @@ package com.hydraframework.demos.website.pages.users.view {
 		}
 
 		override public function initialize():void {
-			super.initialize();
-
+			trace("USERS MEDIATOR INITIALIZE");
+			
 			view.wRetrieveUserList.addEventListener(MouseEvent.CLICK, handleRetrieveUserListClick);
 			view.wUserList.addEventListener(ListEvent.ITEM_CLICK, handleUserListItemClick);
 			view.wSave.addEventListener(MouseEvent.CLICK, handleSaveClick);
 			view.wDelete.addEventListener(MouseEvent.CLICK, handleDeleteClick);
 			view.wCreate.addEventListener(MouseEvent.CLICK, handleCreateClick);
+		}
+		
+		override public function dispose():void {
+			trace("USERS MEDIATOR DISPOSE");
 		}
 
 		override public function handleNotification(notification:Notification):void {

@@ -27,7 +27,7 @@
 		</mx:Transition>
 	</transitions>
 	<mx:VBox width="100%" height="100%">
-		<mx:Text text="{AuthenticationManager.instance.isLoggedOn ? 'Simulated Logged In User' : 'No User Logged In'}"/>
+		<mx:Text text="{AuthenticationManager.instance.authenticated ? 'Simulated Logged In User' : 'No User Logged In'}"/>
 		<mx:Text text="Login"/>
 		<mx:Text text="Username"/>
 		<mx:TextInput id="wLoginId" text="anything"/>

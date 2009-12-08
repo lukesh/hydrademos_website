@@ -42,5 +42,13 @@ package com.hydraframework.demos.website.pages.users {
 			this.registerCommand(UsersFacade.UPDATE_USER, UpdateUserCommand);
 			this.registerCommand(UsersFacade.DELETE_USER, DeleteUserCommand);
 		}
+		
+		override public function initialize() : void {
+			trace("USERS FACADE INITIALIZE");
+		}
+		
+		override public function dispose() : void {
+			trace("USERS FACADE DISPOSE");
+		}
 	}
 }

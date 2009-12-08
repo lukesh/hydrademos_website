@@ -1,4 +1,5 @@
 package com.hydraframework.demos.website {
+	import com.hydraframework.core.HydraFramework;
 	import com.hydraframework.core.mvc.patterns.facade.Facade;
 	import com.hydraframework.demos.website.controller.ConfigurationCompleteCommand;
 	import com.hydraframework.demos.website.controller.StartupCommand;
@@ -11,7 +12,7 @@ package com.hydraframework.demos.website {
 	import com.hydraframework.plugins.error.ErrorManager;
 	import com.hydraframework.plugins.navigation.NavigationPlugin;
 	import com.hydraframework.plugins.navigation.PageNavigationPlugin;
-
+	
 	import mx.core.IUIComponent;
 
 	public class ApplicationFacade extends Facade {
@@ -23,6 +24,8 @@ package com.hydraframework.demos.website {
 
 		public function ApplicationFacade(component:IUIComponent=null) {
 			super(NAME, component);
+			
+//			HydraFramework.debugLevel = HydraFramework.DEBUG_SHOW_INFO | HydraFramework.DEBUG_SHOW_INTERNALS | HydraFramework.DEBUG_SHOW_WARNINGS; 
 		}
 
 		override public function registerCore():void {
